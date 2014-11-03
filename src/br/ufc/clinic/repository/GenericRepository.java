@@ -20,7 +20,7 @@ public class GenericRepository<T> {
 	private boolean load;
 	
 	public GenericRepository(String nome){
-		this.pathFile = nome;
+		this.pathFile = "repository/"+ nome + ".bin";
 		this.entity = new ArrayList<T>();
 		this.load = false;
 	}
@@ -71,6 +71,7 @@ public class GenericRepository<T> {
 		try {
 			this.destroy();
 			this.create();
+			this.load();
 			this.output.writeObject(this.entity);
 		} catch (IOException e) {
 			e.printStackTrace();

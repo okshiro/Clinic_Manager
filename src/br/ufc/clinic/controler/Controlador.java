@@ -1,14 +1,12 @@
-package br.ufc.clinic;
+package br.ufc.clinic.controler;
 
 import br.ufc.clinic.repository.RepositoryManage;
 
+public class Controlador {
 
-public class App {
-
-	public static void main(String[] args) {
+	public Controlador() {
 		RepositoryManage<Object> r = new RepositoryManage<Object>();
-		
-		r.create();
+		r.load();
 	}
 
 }
