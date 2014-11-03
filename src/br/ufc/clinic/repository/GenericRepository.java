@@ -94,24 +94,6 @@ public class GenericRepository<T> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	};	
-	
-	
-	@SuppressWarnings("unchecked")
-	public void merge(){
-		Object object;
-		try {
-			object = input.readObject();
-			while(object != null){
-				this.entity.add((T)object);
-				object = input.readObject();
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		push();
 	};
 	
 	public void add(T entity){
