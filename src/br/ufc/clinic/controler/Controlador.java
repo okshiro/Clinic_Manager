@@ -1,15 +1,9 @@
 package br.ufc.clinic.controler;
 
-import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
-import com.sun.glass.ui.View;
 
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Conta;
