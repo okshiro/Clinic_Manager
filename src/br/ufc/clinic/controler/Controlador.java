@@ -1,12 +1,79 @@
 package br.ufc.clinic.controler;
 
+import java.awt.LayoutManager;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import com.sun.glass.ui.View;
+
+import br.ufc.clinic.classes.Atendente;
+import br.ufc.clinic.classes.Conta;
+import br.ufc.clinic.classes.Funcionario;
+import br.ufc.clinic.classes.Gerente;
+import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.repository.RepositoryManage;
+import br.ufc.clinic.view.ViewLogin;
+
 
 public class Controlador {
-
-	public Controlador() {
-		RepositoryManage<Object> r = new RepositoryManage<Object>();
-		r.load();
+	RepositoryManage<Object> rep = new RepositoryManage<Object>();	
+	
+	
+	public Controlador(){
+		rep.createRepositoryALL();
+		rep.loadRepositoryALL();
+		rep.pullRepositoryALL();
 	}
+	
+	public Funcionario login(){
+		
+		
+		ViewLogin login = new ViewLogin();
 
+		
+		String usuario = login.getUsuario();
+		String senha = login.getSenha();
+		
+		if(login.isAcepted()){
+			
+			Conta contaLogin = new Conta(usuario,senha);
+			
+			List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+			System.out.println("Atendente:" + rep.getAtendentes().get().size());
+			for (Atendente a : rep.getAtendentes().get()) {
+				funcionarios.add(a);
+			}
+			
+			System.out.println("Medico:" + rep.getMedico().get().size());
+			for (Medico m : rep.getMedico().get()) {
+				funcionarios.add(m);
+			}
+			
+			System.out.println("Gerente:" + rep.getGerentes().get());
+			for (Gerente g : rep.getGerentes().get()) {
+				funcionarios.add(g);
+				
+			}
+			System.out.println(funcionarios.size());
+			
+			for (Funcionario f : funcionarios) {
+				System.out.println("Possui funcionario!!!");
+				
+				if(f.getConta().equals(contaLogin)){
+					JOptionPane.showMessageDialog(null, "Funcionario:" + usuario+" foi autenticado!!!");
+					return f;
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Falha ao fazer login!!");
+		}
+		
+		return null;
+		
+	}
+	
 }

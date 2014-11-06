@@ -9,40 +9,22 @@ public class Conta implements Serializable{
     private String senha;
     
     public Conta(String u, String s) {
-    	setUsuario(u);
-    	setSenha(s);
-	}
-    
-    
-    
-    //GETS
-    
-	public String getUsuario() {
-		return usuario;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
-	
-	//SETS
-	
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-	
+    	this.usuario = u;
+    	this.senha = s;
+	}	
 	
 	
 	//SOBRESCRITAS
 	
 	@Override
 	public boolean equals(Object obj) {
-		return this.usuario.equals(((Conta)obj).getUsuario());
+		return this.usuario.equals(((Conta)obj).usuario)  && this.senha.equals( ((Conta)obj).senha);
+	}
+	
+	//apagar isso depois
+	@Override
+	public String toString() {
+		return this.usuario + this.senha;
 	}
 	
 }

@@ -9,8 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GenericRepository<T> {
+	
 	private List<T> entity;
 	private String pathFile;
 	private FileInputStream file;
@@ -18,14 +18,13 @@ public class GenericRepository<T> {
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private boolean load;
-	
+
 	public GenericRepository(String nome){
 		this.pathFile = "repository/"+ nome + ".bin";
 		this.entity = new ArrayList<T>();
 		this.load = false;
 	}
-	
-	
+
 	public void create(){
 		if(this.exist()){
 			System.out.println("Repositorio existente, vou recarregar ele!!!");
@@ -39,7 +38,7 @@ public class GenericRepository<T> {
 			e.printStackTrace();
 		}
 	};
-	
+
 	public void destroy(){
 		if(!this.exist()){
 			System.out.println("Repositorio não existe!!!");
@@ -48,7 +47,7 @@ public class GenericRepository<T> {
 		File f = new File(this.pathFile);
 		f.delete();
 	};
-	
+
 	public void load(){
 		if(!this.exist()){
 			System.out.println("Repositorio não existe!!!");
@@ -62,7 +61,7 @@ public class GenericRepository<T> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void push(){
 		if(!this.exist()){
 			System.out.println("Repositorio não existe!!!");
@@ -77,7 +76,7 @@ public class GenericRepository<T> {
 			e.printStackTrace();
 		}
 	};
-	
+
 	@SuppressWarnings("unchecked")
 	public void pull(){
 		if(!this.exist()){
@@ -93,29 +92,30 @@ public class GenericRepository<T> {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Repositorio Vazio");
 		}
 	};
-	
+
 	public void add(T entity){
 		this.entity.add(entity);
 	};
-	
+
 	public void rem(T entity){
 		this.entity.remove(entity);
 	};
-	
-	
+
+
 	public boolean exist(){
 		File f = new File(this.pathFile);
 		return f.exists();
 	}
-	
+
 	public boolean isLoad(){
 		return this.load;
 	}
-	
+
 	public List<T> get(){
 		return this.entity;
 	}
+
 }

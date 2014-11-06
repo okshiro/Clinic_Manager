@@ -1,14 +1,34 @@
 package br.ufc.clinic;
 
-import br.ufc.clinic.repository.RepositoryManage;
+import javax.swing.UIManager;
+
+import br.ufc.clinic.classes.Atendente;
+import br.ufc.clinic.classes.Funcionario;
+import br.ufc.clinic.controler.Controlador;
+import br.ufc.clinic.view.ViewAtendente;
+
+
 
 
 public class App {
 
+	private static Controlador control;
+	private static Funcionario usuario;
+	
 	public static void main(String[] args) {
-		RepositoryManage<Object> r = new RepositoryManage<Object>();
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		r.create();
+		control = new Controlador();
+		usuario = control.login();
+		if(usuario != null){
+			@SuppressWarnings("unused")
+			ViewAtendente window = new ViewAtendente((Atendente) usuario);
+		}
+		
 	}
 
 }
