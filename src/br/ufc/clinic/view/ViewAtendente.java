@@ -17,7 +17,6 @@ import br.ufc.clinic.classes.Atendente;
 public class ViewAtendente {
 
 	private JFrame frame;
-	@SuppressWarnings("unused")
 	private Atendente atendente;
 	
 	public ViewAtendente(Atendente a) {
@@ -55,6 +54,15 @@ public class ViewAtendente {
 		menuBar.add(Cadastros);
 		
 		JMenuItem CadastrarPaciente = new JMenuItem("Cadastrar Paciente");
+		CadastrarPaciente.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewCadastraPaciente cadastroPaciente = new ViewCadastraPaciente(atendente);
+			}
+		});
+		
+		
 		Cadastros.add(CadastrarPaciente);
 		
 		JMenuItem CadastrarMedico = new JMenuItem("Cadastrar Médico");

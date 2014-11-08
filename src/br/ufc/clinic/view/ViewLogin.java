@@ -1,72 +1,109 @@
 package br.ufc.clinic.view;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ViewLogin extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField usuario;
-	private JPasswordField senha;
-	private JButton entrar;
-	private JButton sair;
-	private Boolean acepted = false;
-	
+	private final JPanel contentPanel = new JPanel();
+	private JTextField textUsuario;
+	private JPasswordField textSenha;
+	private boolean acepted;
+
 	public ViewLogin() {
-		this.usuario = new JTextField(15);
-		this.senha = new JPasswordField(15);
-		this.entrar = new JButton("Entrar");
-		this.entrar.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				acepted = true;
-				dispose();
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JLabel lblRealizarLogin = new JLabel("Realizar Login");
+			lblRealizarLogin.setFont(new Font("Dialog", Font.BOLD, 20));
+			lblRealizarLogin.setBounds(128, 12, 186, 29);
+			contentPanel.add(lblRealizarLogin);
+		}
+		{
+			JLabel lblUsurio = new JLabel("usuário");
+			lblUsurio.setFont(new Font("Dialog", Font.BOLD, 14));
+			lblUsurio.setBounds(179, 53, 70, 15);
+			contentPanel.add(lblUsurio);
+		}
+		{
+			textUsuario = new JTextField();
+			textUsuario.setBounds(112, 80, 196, 26);
+			contentPanel.add(textUsuario);
+			textUsuario.setColumns(10);
+		}
+		{
+			JLabel lblSenha = new JLabel("Senha");
+			lblSenha.setFont(new Font("Dialog", Font.BOLD, 14));
+			lblSenha.setBounds(179, 126, 70, 15);
+			contentPanel.add(lblSenha);
+		}
+		
+		textSenha = new JPasswordField();
+		textSenha.setBounds(112, 159, 196, 26);
+		contentPanel.add(textSenha);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						acepted = true;
+						setVisible(false);
+					}
+				});
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
 			}
-		});
-		
-		this.sair = new JButton("Sair");
-		this.sair.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				acepted = false;
-				dispose();
+			{
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener(
+						) {
+					
+					public void actionPerformed(ActionEvent e) {
+						acepted = false;
+						setVisible(false);
+					}
+				});
+				
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
 			}
-		});
-		
-		
-		JLabel labelUsuario = new JLabel("usuário");
-		JLabel labelSenha = new JLabel("Senha");
-		
-		add(labelUsuario);
-		add(usuario);
-		add(labelSenha);
-		add(senha);
-		add(entrar);
-		add(sair);
-		
+		}
 		setModal(true);
-		setSize(300, 200);
-		setLayout(new FlowLayout());
 		setVisible(true);
 	}
 	
 	public String getUsuario(){
-		return this.usuario.getText();
+		return this.textUsuario.getText();
 	}
+	
 	@SuppressWarnings("deprecation")
 	public String getSenha(){
-		return this.senha.getText();
+		return this.textSenha.getText();
 	}
+	
 
-	public Boolean isAcepted() {
+	public boolean isAcepted() {
 		return acepted;
 	}
-
 }

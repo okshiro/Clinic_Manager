@@ -115,6 +115,7 @@ public class GenericRepository<T> {
 	}
 
 	public List<T> get(){
+		this.pull();
 		return this.entity;
 	}
 

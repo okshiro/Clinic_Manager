@@ -28,7 +28,8 @@ public class Controlador {
 		
 		
 		ViewLogin login = new ViewLogin();
-
+		
+		System.out.println("bista");
 		
 		String usuario = login.getUsuario();
 		String senha = login.getSenha();
@@ -38,28 +39,22 @@ public class Controlador {
 			Conta contaLogin = new Conta(usuario,senha);
 			
 			List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-			System.out.println("Atendente:" + rep.getAtendentes().get().size());
 			for (Atendente a : rep.getAtendentes().get()) {
 				funcionarios.add(a);
 			}
 			
-			System.out.println("Medico:" + rep.getMedico().get().size());
 			for (Medico m : rep.getMedico().get()) {
 				funcionarios.add(m);
 			}
 			
-			System.out.println("Gerente:" + rep.getGerentes().get());
 			for (Gerente g : rep.getGerentes().get()) {
 				funcionarios.add(g);
 				
 			}
-			System.out.println(funcionarios.size());
 			
 			for (Funcionario f : funcionarios) {
-				System.out.println("Possui funcionario!!!");
-				
 				if(f.getConta().equals(contaLogin)){
-					JOptionPane.showMessageDialog(null, "Funcionario:" + usuario+" foi autenticado!!!");
+					JOptionPane.showMessageDialog(null, "Funcionario: " + usuario+" foi autenticado! :)");
 					return f;
 				}
 			}
