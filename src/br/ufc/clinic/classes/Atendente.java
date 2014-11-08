@@ -1,5 +1,7 @@
 package br.ufc.clinic.classes;
 
+import java.util.List;
+
 import br.ufc.clinic.repository.GenericRepository;
 
 public class Atendente extends Funcionario {
@@ -35,10 +37,21 @@ public class Atendente extends Funcionario {
 	}
 	
 	
-	public void cadastrarMedico(String nome, long crm, Conta conta, Endereco endereco){
+	public void cadastrarMedico(String nome, long crm, Conta conta, Endereco endereco, Telefone telefone, List<Especialidade> especialidades, List<DiaSemana> dias ){
 		Medico m = new Medico(nome, conta, crm);
 		if(endereco != null){
 			m.addEndereco(endereco);
+		}
+		if(telefone != null){
+			m.addTelefone(telefone);
+		}
+		
+		for (Especialidade e : especialidades) {
+			m.addEspecialidades(e);
+		}
+		
+		for (DiaSemana d : dias) {
+			m.addDiasTrabalha(d);
 		}
 		
 		GenericRepository<Medico> medico = new GenericRepository<Medico>("medico");
