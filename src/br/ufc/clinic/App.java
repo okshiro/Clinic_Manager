@@ -28,6 +28,8 @@ public class App {
 			@SuppressWarnings("unused")
 			ViewAtendente window = new ViewAtendente((Atendente) usuario);
 		}
+		
+		
 	}
 
 }

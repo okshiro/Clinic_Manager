@@ -66,6 +66,14 @@ public class ViewAtendente {
 		Cadastros.add(CadastrarPaciente);
 		
 		JMenuItem CadastrarMedico = new JMenuItem("Cadastrar Médico");
+		CadastrarMedico.addActionListener(new ActionListener(
+				) {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewCadastroMedico cadastroMedico = new ViewCadastroMedico(atendente);
+			}
+		});
 		Cadastros.add(CadastrarMedico);
 		
 		JMenu Consultas = new JMenu("Consultas");

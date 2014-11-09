@@ -37,7 +37,7 @@ public class Atendente extends Funcionario {
 	}
 	
 	
-	public void cadastrarMedico(String nome, long crm, Conta conta, Endereco endereco, Telefone telefone, List<Especialidade> especialidades, List<DiaSemana> dias ){
+	public void cadastrarMedico(String nome, long crm, Conta conta, Endereco endereco, Telefone telefone,Especialidade especialidade, List<DiaSemana> dias ){
 		Medico m = new Medico(nome, conta, crm);
 		if(endereco != null){
 			m.addEndereco(endereco);
@@ -46,9 +46,8 @@ public class Atendente extends Funcionario {
 			m.addTelefone(telefone);
 		}
 		
-		for (Especialidade e : especialidades) {
-			m.addEspecialidades(e);
-		}
+		
+		m.addEspecialidades(especialidade);
 		
 		for (DiaSemana d : dias) {
 			m.addDiasTrabalha(d);

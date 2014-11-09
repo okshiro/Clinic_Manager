@@ -1,5 +1,6 @@
 package br.ufc.clinic.classes;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,17 +17,27 @@ public class Medico extends Funcionario {
 	
 	
 	//CONSTRUCTS
-
+	
 	public Medico(String nome) {
 		super(nome);
+		diasTrabalha = new ArrayList<DiaSemana>();
+		especialidades = new ArrayList<Especialidade>();
+		planosSaude = new ArrayList<PlanoSaude>();
+		enderecos = new ArrayList<Endereco>();
+		telefones = new ArrayList<Telefone>();	
 	}
 
 	public Medico(String nome, Conta conta) {
 		super(nome, conta);
+		diasTrabalha = new ArrayList<DiaSemana>();
+		especialidades = new ArrayList<Especialidade>();
+		planosSaude = new ArrayList<PlanoSaude>();
+		enderecos = new ArrayList<Endereco>();
+		telefones = new ArrayList<Telefone>();
 	}
 	
 	public Medico(String nome, Conta conta, long crm) {
-		super(nome, conta);
+		this(nome, conta);
 		setCrm(crm);
 	}
 
