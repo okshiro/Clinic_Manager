@@ -13,5 +13,17 @@ public class Gerente extends Funcionario {
 		super(nome, conta);
 		// TODO Auto-generated constructor stub
 	}
+	
+	//SOBRESCRITAS
+	
+	@Override
+	public String toString() {
+		return this.getNome();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getNome().equals(((Gerente)obj).getNome());
+	}
 
 }

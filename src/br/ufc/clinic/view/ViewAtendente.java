@@ -113,6 +113,17 @@ public class ViewAtendente extends JDialog {
 		
 		mnVisualizar.add(mntmMedicos);
 		
+		JMenuItem mntmGerentes = new JMenuItem("Gerentes");
+		mntmGerentes.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewVisualizarGerente viewGerente = new ViewVisualizarGerente();
+			}
+		});
+		
+		mnVisualizar.add(mntmGerentes);
+		
 		JMenuItem mntmConsultas = new JMenuItem("Consultas");
 		mnVisualizar.add(mntmConsultas);
 		
