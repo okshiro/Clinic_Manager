@@ -1,6 +1,7 @@
 package br.ufc.clinic.classes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente implements Serializable{
@@ -17,6 +18,8 @@ public class Paciente implements Serializable{
     //CONSTRUCTS
     
     public Paciente(String nome) {
+    	enderecos = new ArrayList<Endereco>();
+    	telefones = new ArrayList<Telefone>();
     	setNome(nome);
     }
     public Paciente(String nome, long cpf) {
