@@ -95,7 +95,8 @@ public class ViewVisualizarMedico extends JDialog {
 						Medico m = new Medico(nome, crm);
 						for (Medico med  : medicos.get()) {
 							if(m.equals(med)){
-								
+								@SuppressWarnings("unused")
+								ViewMedico viewMedico = new ViewMedico(med);
 								break;
 							}
 						}
@@ -106,5 +107,7 @@ public class ViewVisualizarMedico extends JDialog {
 				buttonPane.add(detalhesButton);
 			}
 		}
+		setModal(true);
+		setVisible(true);
 	}
 }

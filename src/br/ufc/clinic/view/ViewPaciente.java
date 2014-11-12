@@ -11,7 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Endereco;
 import br.ufc.clinic.classes.Paciente;
+import br.ufc.clinic.classes.Telefone;
+
+import java.awt.List;
 
 public class ViewPaciente extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -30,7 +34,7 @@ public class ViewPaciente extends JDialog {
 	}
 
 	public ViewPaciente(Paciente p) {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 459);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -48,41 +52,48 @@ public class ViewPaciente extends JDialog {
 		lblCpf.setBounds(12, 76, 70, 15);
 		contentPanel.add(lblCpf);
 		
-		JLabel lblEndereco = new JLabel("Endereco:");
-		lblEndereco.setBounds(12, 110, 80, 17);
+		JLabel lblEndereco = new JLabel("Enderecos");
+		lblEndereco.setBounds(97, 145, 80, 17);
 		contentPanel.add(lblEndereco);
 		
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(12, 150, 70, 15);
+		JLabel lblTelefone = new JLabel("Telefones");
+		lblTelefone.setBounds(426, 146, 70, 15);
 		contentPanel.add(lblTelefone);
 		
 		JLabel nome = new JLabel(p.getNome());
 		nome.setBounds(66, 42, 352, 15);
 		contentPanel.add(nome);
 		
+		
 		JLabel cpf = new JLabel(Long.toString(p.getCpf()));
 		cpf.setBounds(64, 76, 354, 15);
 		contentPanel.add(cpf);
-		JLabel endereco;
-		if(p.getEnderecos().size() > 0){
-			 endereco= new JLabel(p.getEnderecos().get(0).toString());
-		}else{
-			endereco= new JLabel("Vazio");
+		
+		
+		
+		List listEnderecos = new List();
+		
+		for(Endereco e : p.getEnderecos()){
+			listEnderecos.add(e.toString());
 		}
 		
-		endereco.setBounds(88, 111, 330, 15);
-		contentPanel.add(endereco);
+		listEnderecos.setBounds(12, 168, 315, 169);
+		contentPanel.add(listEnderecos);
 		
 		
 		
-		JLabel telefone; 
-		if(p.getTelefones().size() > 0){
-			telefone = new JLabel(p.getTelefones().get(0).toString());
-		}else{
-			telefone = new JLabel("Vazio");
+		List listTelefones = new List();
+		
+		for(Telefone t : p.getTelefones()){
+			listTelefones.add(t.toString());
 		}
-		telefone.setBounds(88, 150, 330, 15);
-		contentPanel.add(telefone);
+		
+		
+		listTelefones.setBounds(348, 167, 222, 168);
+		contentPanel.add(listTelefones);
+		
+		
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

@@ -92,6 +92,14 @@ public class ViewAtendente extends JDialog {
 		mnVisualizar.add(mntmPacientes);
 		
 		JMenuItem mntmMedicos = new JMenuItem("Medicos");
+		mntmMedicos.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewVisualizarMedico viewMedico = new ViewVisualizarMedico();
+			}
+		});
+		
 		mnVisualizar.add(mntmMedicos);
 		
 		JMenuItem mntmConsultas = new JMenuItem("Consultas");
