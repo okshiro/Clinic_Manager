@@ -26,6 +26,11 @@ public class Medico extends Funcionario {
 		enderecos = new ArrayList<Endereco>();
 		telefones = new ArrayList<Telefone>();	
 	}
+	
+	public Medico(String nome, long crm) {
+		this(nome);
+		 this.crm= crm;
+	}
 
 	public Medico(String nome, Conta conta) {
 		super(nome, conta);
@@ -108,6 +113,19 @@ public class Medico extends Funcionario {
 	
 	public void remTelefone(Telefone telefone){
 		this.telefones.remove(telefone);
+	}
+	
+	//SOBRESCRITAS
+	
+	@Override
+	public String toString() {
+		return this.getNome() + "-" + this.crm;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Medico m = (Medico) obj;
+		return this.getNome().equals(m.getNome()) && this.getCrm() == m.getCrm();
 	}
 
 
