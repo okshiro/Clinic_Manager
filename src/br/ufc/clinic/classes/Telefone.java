@@ -25,4 +25,12 @@ public class Telefone implements Serializable{
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+	
+	//SOBRESCRITAS
+	
+	@Override
+	public String toString() {
+		return this.numero;
+	}
+	
 }

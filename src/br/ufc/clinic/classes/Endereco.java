@@ -109,6 +109,12 @@ public class Endereco implements Serializable{
 		   this.getNumero() == ((Endereco)obj).getNumero();
 	}
 	
+	@Override
+	public String toString() {
+		return this.estado + "-" + this.cidade + "-" + this.bairro + "-" + this.rua + "-" + this.numero;
+	}
+	
+	
 	
 	
 }

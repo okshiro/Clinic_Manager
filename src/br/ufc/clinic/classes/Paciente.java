@@ -2,6 +2,7 @@ package br.ufc.clinic.classes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Paciente implements Serializable{
@@ -38,6 +39,14 @@ public class Paciente implements Serializable{
 		return cpf;
 	}
 	
+	public List<Endereco> getEnderecos(){
+		return Collections.unmodifiableList(this.enderecos);
+	}
+	
+	public List<Telefone> getTelefones(){
+		return Collections.unmodifiableList(this.telefones);
+	}
+	
 	//SETS
 	
 	public void setNome(String nome) {
@@ -47,6 +56,7 @@ public class Paciente implements Serializable{
 	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
+	
 	
 	//ADDS
 	public void addEndereco(Endereco e){
@@ -68,7 +78,19 @@ public class Paciente implements Serializable{
 		}
 	
 	
+	//SOBRECARGAS
+		
+	@Override
+	public String toString() {
+		return this.nome + "-"+ this.cpf;
+	}
 	
+	
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println(toString() + " == " + ((Paciente)obj).toString());
+		return this.getNome().equals(((Paciente)obj).getNome()) && this.getCpf() == ((Paciente)obj).getCpf();
+	}
 	
 	
 }

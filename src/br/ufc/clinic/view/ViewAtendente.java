@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,8 +15,8 @@ import javax.swing.JOptionPane;
 
 import br.ufc.clinic.classes.Atendente;
 
-public class ViewAtendente {
-
+public class ViewAtendente extends JDialog {
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private Atendente atendente;
 	
@@ -75,6 +76,26 @@ public class ViewAtendente {
 			}
 		});
 		Cadastros.add(CadastrarMedico);
+		
+		JMenu mnVisualizar = new JMenu("Visualizar");
+		menuBar.add(mnVisualizar);
+		
+		JMenuItem mntmPacientes = new JMenuItem("Pacientes");
+		mntmPacientes.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewVisualizarPaciente viewPaciente = new ViewVisualizarPaciente();
+			}
+		});
+		
+		mnVisualizar.add(mntmPacientes);
+		
+		JMenuItem mntmMedicos = new JMenuItem("Medicos");
+		mnVisualizar.add(mntmMedicos);
+		
+		JMenuItem mntmConsultas = new JMenuItem("Consultas");
+		mnVisualizar.add(mntmConsultas);
 		
 		JMenu Consultas = new JMenu("Consultas");
 		menuBar.add(Consultas);
