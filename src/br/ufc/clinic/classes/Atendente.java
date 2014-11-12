@@ -64,5 +64,15 @@ public class Atendente extends Funcionario {
 		medico.add(m);
 		medico.push();
 	}
+	
+	public void cadastrarGerente(String nome, Conta c){
+		Gerente g = new Gerente(nome, c);
+		GenericRepository<Gerente> gerente = new GenericRepository<Gerente>("gerente");
+		gerente.create();
+		gerente.load();
+		gerente.pull();
+		gerente.add(g);
+	}
+	
 
 }

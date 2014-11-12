@@ -98,10 +98,12 @@ public class GenericRepository<T> {
 
 	public void add(T entity){
 		this.entity.add(entity);
+		this.push();
 	};
 
 	public void rem(T entity){
 		this.entity.remove(entity);
+		this.push();
 	};
 
 

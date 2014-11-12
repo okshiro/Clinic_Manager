@@ -77,6 +77,17 @@ public class ViewAtendente extends JDialog {
 		});
 		Cadastros.add(CadastrarMedico);
 		
+		JMenuItem CadastrarGerente = new JMenuItem("Cadastrar Gerente");
+		CadastrarGerente.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewCadastroGerente cadastroGerente = new ViewCadastroGerente(atendente);
+			}
+		});
+		
+		Cadastros.add(CadastrarGerente);
+		
 		JMenu mnVisualizar = new JMenu("Visualizar");
 		menuBar.add(mnVisualizar);
 		
