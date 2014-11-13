@@ -1,26 +1,15 @@
 package br.ufc.clinic.classes;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ConsultaPorPlano extends Consulta {
 
 	private PlanoSaude planoSaude;
 	
-	public ConsultaPorPlano(Date horario, Paciente paciente, Medico medico) {
-		super(horario, paciente, medico);
-	}
-	
-	public ConsultaPorPlano(Date horario, Paciente paciente, Medico medico, PlanoSaude planoSaude) {
-		super(horario, paciente, medico);
-		setPlanoSaude(planoSaude);
-	}
 
-	public ConsultaPorPlano(double duracao, Date horario, Paciente paciente, Medico medico) {
-		super(duracao, horario, paciente, medico);
-	}
-	public ConsultaPorPlano(double duracao, Date horario, Paciente paciente, Medico medico, PlanoSaude planoSaude) {
-		super(duracao, horario, paciente, medico);
-		setPlanoSaude(planoSaude);
+	public ConsultaPorPlano(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico) {
+		super(id, duracao, dia, hora, paciente, medico);
 	}
 
 	

@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.ufc.clinic.classes.Paciente;
 import br.ufc.clinic.classes.PlanoSaude;
 import br.ufc.clinic.repository.GenericRepository;
 

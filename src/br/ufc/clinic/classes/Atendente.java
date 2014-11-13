@@ -1,5 +1,7 @@
 package br.ufc.clinic.classes;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import br.ufc.clinic.repository.GenericRepository;
@@ -84,6 +86,16 @@ public class Atendente extends Funcionario {
 		p.load();
 		p.pull();
 		p.add(plano);		
+	}
+	
+	public void cadastrarConsultaParticular(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico, double preco){
+		ConsultaParticular c = new ConsultaParticular(id, duracao, dia, hora, paciente, medico, preco);
+		GenericRepository<ConsultaParticular> consulta = new GenericRepository<ConsultaParticular>("consulta_particular");
+		consulta.create();
+		consulta.load();
+		consulta.pull();
+		consulta.add(c);
+		consulta.push();
 	}
 	
 

@@ -20,6 +20,7 @@ import br.ufc.clinic.view.cadastros.ViewCadastraPaciente;
 import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
+import br.ufc.clinic.view.opcoes.ViewEscolherConsulta;
 import br.ufc.clinic.view.visualizar.ViewVisualizarGerente;
 import br.ufc.clinic.view.visualizar.ViewVisualizarMedico;
 import br.ufc.clinic.view.visualizar.ViewVisualizarPaciente;
@@ -174,6 +175,21 @@ public class ViewAtendente extends JDialog {
 		menuBar.add(Consultas);
 		
 		JMenuItem MarcarConsulta = new JMenuItem("Marcar Consulta");
+		MarcarConsulta.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				ViewEscolherConsulta escolha = new ViewEscolherConsulta();
+				if(escolha.getTipoConsulta() == 1){
+					
+				}else if(escolha.getTipoConsulta() == 2){
+					
+				}else{
+					return;
+				}
+				
+			}
+		});
+		
 		Consultas.add(MarcarConsulta);
 		
 		JMenuItem DesmarcaConsulta = new JMenuItem("Desmarca Consulta");

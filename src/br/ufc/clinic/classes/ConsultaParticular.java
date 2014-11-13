@@ -1,6 +1,7 @@
 package br.ufc.clinic.classes;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ConsultaParticular extends Consulta {
 
@@ -8,20 +9,9 @@ public class ConsultaParticular extends Consulta {
 	
 	//CONSTRUCTS
 	
-	public ConsultaParticular(Date horario, Paciente paciente, Medico medico) {
-		super(horario, paciente, medico);
-	}
-	public ConsultaParticular(Date horario, Paciente paciente, Medico medico, double valorPagar) {
-		super(horario, paciente, medico);
-		setValorPagar(valorPagar);
-	}
-
-	public ConsultaParticular(double duracao, Date horario, Paciente paciente, Medico medico) {
-		super(duracao, horario, paciente, medico);
-	}
-	public ConsultaParticular(double duracao, Date horario, Paciente paciente, Medico medico, double valorPagar) {
-		super(duracao, horario, paciente, medico);
-		setValorPagar(valorPagar);
+	public ConsultaParticular(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico, double valor) {
+		super(id, duracao, dia, hora, paciente, medico);
+		setValorPagar(valor);
 	}
 
 	
