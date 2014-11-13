@@ -1,4 +1,4 @@
-package br.ufc.clinic.view;
+package br.ufc.clinic.view.visualizar;
 
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -14,6 +14,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import br.ufc.clinic.classes.Atendente;
+import br.ufc.clinic.view.cadastros.ViewCadastraPaciente;
+import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
+import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
+import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
 
 public class ViewAtendente extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -88,6 +92,17 @@ public class ViewAtendente extends JDialog {
 		
 		Cadastros.add(CadastrarGerente);
 		
+		JMenuItem mntmCadastroPlanoDe = new JMenuItem("Cadastrar Plano de Saúde");
+		mntmCadastroPlanoDe.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				viewCadastrarPlanoSaude cadastroPlano = new viewCadastrarPlanoSaude(atendente);
+			}
+		});
+		
+		Cadastros.add(mntmCadastroPlanoDe);
+		
 		JMenu mnVisualizar = new JMenu("Visualizar");
 		menuBar.add(mnVisualizar);
 		
@@ -123,6 +138,17 @@ public class ViewAtendente extends JDialog {
 		});
 		
 		mnVisualizar.add(mntmGerentes);
+		
+		JMenuItem mntmPlanosDeSade = new JMenuItem("Planos de Saúde");
+		mntmPlanosDeSade.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewVisualizarPlanosSaude viewPlanoSaude = new ViewVisualizarPlanosSaude();
+			}
+		});
+		
+		mnVisualizar.add(mntmPlanosDeSade);
 		
 		JMenuItem mntmConsultas = new JMenuItem("Consultas");
 		mnVisualizar.add(mntmConsultas);

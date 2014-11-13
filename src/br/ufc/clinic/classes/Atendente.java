@@ -74,5 +74,17 @@ public class Atendente extends Funcionario {
 		gerente.add(g);
 	}
 	
+	public void cadastrarPlanoDeSaude(String razaoSocial,long cnpj, Endereco enderecos, Telefone telefones ){
+		PlanoSaude plano = new PlanoSaude(razaoSocial, cnpj);
+		plano.addEndereco(enderecos);
+		plano.addTelefone(telefones);
+		
+		GenericRepository<PlanoSaude> p = new GenericRepository<PlanoSaude>("plano_saude");
+		p.create();
+		p.load();
+		p.pull();
+		p.add(plano);		
+	}
+	
 
 }

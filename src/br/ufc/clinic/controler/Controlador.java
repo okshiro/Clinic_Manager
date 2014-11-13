@@ -11,7 +11,7 @@ import br.ufc.clinic.classes.Funcionario;
 import br.ufc.clinic.classes.Gerente;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.repository.RepositoryManage;
-import br.ufc.clinic.view.ViewLogin;
+import br.ufc.clinic.view.visualizar.ViewLogin;
 
 
 public class Controlador {

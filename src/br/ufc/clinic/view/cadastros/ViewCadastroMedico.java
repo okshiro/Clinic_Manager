@@ -1,4 +1,4 @@
-package br.ufc.clinic.view;
+package br.ufc.clinic.view.cadastros;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -27,6 +27,7 @@ import br.ufc.clinic.classes.Especialidade;
 import br.ufc.clinic.classes.Telefone;
 import br.ufc.clinic.ferramentas.Ferramentas;
 import br.ufc.clinic.repository.GenericRepository;
+import br.ufc.clinic.view.components.JTextFieldNumbers;
 
 public class ViewCadastroMedico extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -85,7 +86,7 @@ public class ViewCadastroMedico extends JDialog {
 			contentPanel.add(lblCrm);
 		
 		
-			textCrm = new JTextField();
+			textCrm = new JTextFieldNumbers();
 			textCrm.setBounds(8, 129, 156, 19);
 			contentPanel.add(textCrm);
 			textCrm.setColumns(10);
@@ -161,7 +162,7 @@ public class ViewCadastroMedico extends JDialog {
 			contentPanel.add(lblNumero);
 		
 		
-			textNumero = new JTextField();
+			textNumero = new JTextFieldNumbers();
 			textNumero.setBounds(241, 362, 147, 19);
 			contentPanel.add(textNumero);
 			textNumero.setColumns(10);

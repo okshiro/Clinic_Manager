@@ -1,10 +1,11 @@
-package br.ufc.clinic.view;
+package br.ufc.clinic.view.cadastros;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -104,6 +105,7 @@ public class ViewCadastroGerente extends JDialog {
 						@SuppressWarnings("deprecation")
 						String senha = passwordSenha.getText();
 						atendente.cadastrarGerente(nome, new Conta(usuario, senha));
+						JOptionPane.showMessageDialog(null, "Gerente Cadastrado Com Sucesso!!!");
 						dispose();
 					}
 				});

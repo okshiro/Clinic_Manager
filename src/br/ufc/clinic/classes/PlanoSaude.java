@@ -1,6 +1,7 @@
 package br.ufc.clinic.classes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,15 @@ public class PlanoSaude implements Serializable{
 	private List<Telefone> telefones;
 	private List<Endereco> enderecos;
 	
-	
+	public PlanoSaude(String razao) {
+		setRazaoSocial(razao);
+		this.enderecos = new ArrayList<Endereco>();
+		this.telefones = new ArrayList<Telefone>();
+	}
+	public PlanoSaude(String razao, long cnpj) {
+		this(razao);
+		setCnpj(cnpj);
+	}
 	
 	
 	
@@ -65,6 +74,20 @@ public class PlanoSaude implements Serializable{
 	public void remTelefone(Telefone telefone){
 		this.telefones.remove(telefone);
 	}
+	
+	//SOBRESCRITAS
+	
+	@Override
+	public boolean equals(Object obj) {
+		PlanoSaude p = (PlanoSaude) obj;
+		return this.getRazaoSocial().equals(p.getRazaoSocial()) && this.getCnpj() == this.getCnpj();
+	}
+	
+	@Override
+	public String toString() {
+		return this.getRazaoSocial() + "-" + this.getCnpj();
+	}
+	
 	
 	
 }

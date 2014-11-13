@@ -1,4 +1,4 @@
-package br.ufc.clinic.view;
+package br.ufc.clinic.view.visualizar;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
