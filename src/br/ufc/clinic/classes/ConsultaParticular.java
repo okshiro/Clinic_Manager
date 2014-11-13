@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ConsultaParticular extends Consulta {
-
+	private static final long serialVersionUID = 1L;
 	private double valorPagar;
 	
 	//CONSTRUCTS
