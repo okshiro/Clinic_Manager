@@ -2,20 +2,20 @@ package br.ufc.clinic.view.visualizar;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
-import br.ufc.clinic.classes.Gerente;
-import br.ufc.clinic.repository.GenericRepository;
-
 import java.awt.Font;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import br.ufc.clinic.classes.Gerente;
+import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarGerente extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -43,13 +43,12 @@ public class ViewVisualizarGerente extends JDialog {
 			lblGerentes.setBounds(179, 12, 114, 15);
 			contentPanel.add(lblGerentes);
 		}
-		{
 			
-			GenericRepository<Gerente> gerentes = new GenericRepository<Gerente>("gerente");
+			final GenericRepository<Gerente> gerentes = new GenericRepository<Gerente>("gerente");
 			gerentes.create();
 			gerentes.load();
 			gerentes.pull();
-			List listGerentes = new List();
+			final List listGerentes = new List();
 			for(Gerente g : gerentes.get()){
 				listGerentes.add(g.toString());
 			}
@@ -57,7 +56,6 @@ public class ViewVisualizarGerente extends JDialog {
 			
 			listGerentes.setBounds(10, 39, 410, 168);
 			contentPanel.add(listGerentes);
-		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -70,6 +68,31 @@ public class ViewVisualizarGerente extends JDialog {
 						dispose();
 					}
 				});
+				
+				{
+					JButton excluirButton = new JButton("Excluir");
+					excluirButton.addActionListener(new ActionListener() {
+						
+						public void actionPerformed(ActionEvent e) {
+							String nome = listGerentes.getSelectedItem();
+							if(nome == null){
+								JOptionPane.showMessageDialog(null, "Selecione um Gerente!!");
+								return;
+							}
+							int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir esse Gerente?");
+							if(opcao > 0){
+								return;
+							}
+							listGerentes.remove(listGerentes.getSelectedIndex());
+							gerentes.rem(new Gerente(nome));
+							JOptionPane.showMessageDialog(null, "Gerente Removido com Sucesso!!!");
+						}
+					});
+					excluirButton.setActionCommand("Excluir");
+					buttonPane.add(excluirButton);
+					getRootPane().setDefaultButton(excluirButton);
+				}
+				
 				
 				sairButton.setActionCommand("Cancel");
 				buttonPane.add(sairButton);

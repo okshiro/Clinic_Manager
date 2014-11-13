@@ -32,6 +32,11 @@ public class ViewCadastraPaciente extends JDialog {
 	private JTextField textNumero;
 	private JTextField textTelefone;
 
+	public static void main(String[] args) {
+		@SuppressWarnings("unused")
+		ViewCadastraPaciente v = new ViewCadastraPaciente(new Atendente("sds"));
+	}
+	
 	public ViewCadastraPaciente(final Atendente atendente) {
 		setVisible(true);
 		setModal(true);
@@ -164,5 +169,7 @@ public class ViewCadastraPaciente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		setModal(true);
+		setVisible(true);
 	}
 }

@@ -25,7 +25,6 @@ public class ViewVisualizarMedico extends JDialog {
 		try {
 			ViewVisualizarMedico dialog = new ViewVisualizarMedico();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,6 +76,36 @@ public class ViewVisualizarMedico extends JDialog {
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
+			
+			{
+				JButton excluirButton = new JButton("Excluir");
+				excluirButton.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						String select = listaMedicos.getSelectedItem();
+						if(select == null){
+							JOptionPane.showMessageDialog(null, "Selecione um Medico!!");
+							return;
+						}
+						int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir esse Medico?");
+						if(opcao > 0){
+							return;
+						}
+						
+						int index = select.indexOf("-");
+						
+						String nome = select.substring(0, index);
+						long crm = Long.parseLong(select.substring(index+1, select.length()));
+						listaMedicos.remove(listaMedicos.getSelectedIndex());
+						medicos.rem(new Medico(nome, crm));
+						JOptionPane.showMessageDialog(null, "Medico Removido com Sucesso!!!");
+					}
+				});
+				excluirButton.setActionCommand("Excluir");
+				buttonPane.add(excluirButton);
+				getRootPane().setDefaultButton(excluirButton);
+			}
+			
 			{
 				JButton detalhesButton = new JButton("Detalhes");
 				detalhesButton.addActionListener(new ActionListener() {

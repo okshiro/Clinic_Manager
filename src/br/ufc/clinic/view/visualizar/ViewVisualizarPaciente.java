@@ -74,6 +74,34 @@ public class ViewVisualizarPaciente extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
+				JButton excluirButton = new JButton("Excluir");
+				excluirButton.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						String select = listPacientes.getSelectedItem();
+						if(select == null){
+							JOptionPane.showMessageDialog(null, "Selecione um Paciente!!");
+							return;
+						}
+						int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir esse Paciente?");
+						if(opcao > 0){
+							return;
+						}
+						
+						int index = select.indexOf("-");
+						
+						String nome = select.substring(0, index);
+						long cpf = Long.parseLong(select.substring(index+1, select.length()));
+						listPacientes.remove(listPacientes.getSelectedIndex());
+						pacientes.rem(new Paciente(nome, cpf));
+						JOptionPane.showMessageDialog(null, "Paciente Removido com Sucesso!!!");
+					}
+				});
+				excluirButton.setActionCommand("Excluir");
+				buttonPane.add(excluirButton);
+				getRootPane().setDefaultButton(excluirButton);
+			}
+			{
 				JButton detalhesButton = new JButton("Detalhes");
 				detalhesButton.addActionListener(new ActionListener() {
 					

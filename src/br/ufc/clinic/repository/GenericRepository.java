@@ -17,7 +17,7 @@ public class GenericRepository<T> {
 	private FileOutputStream file2;
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
-	private boolean load;
+	private boolean load;  
 
 	public GenericRepository(String nome){
 		this.pathFile = getClass().getResource("/repository/"+ nome + ".bin").getFile();
@@ -119,6 +119,6 @@ public class GenericRepository<T> {
 	public List<T> get(){
 		this.pull();
 		return this.entity;
-	}
+	}	
 
 }
