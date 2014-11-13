@@ -97,6 +97,17 @@ public class Atendente extends Funcionario {
 		consulta.add(c);
 		consulta.push();
 	}
+	public void cadastrarConsultaPorPlano(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico,PlanoSaude p){
+		ConsultaPorPlano c = new ConsultaPorPlano(id, duracao, dia, hora, paciente, medico);
+		c.setPlanoSaude(p);
+		
+		GenericRepository<ConsultaPorPlano> consulta = new GenericRepository<ConsultaPorPlano>("consulta_plano");
+		consulta.create();
+		consulta.load();
+		consulta.pull();
+		consulta.add(c);
+		consulta.push();
+	}
 	
 
 }

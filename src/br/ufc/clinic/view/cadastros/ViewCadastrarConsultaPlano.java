@@ -22,9 +22,10 @@ import javax.swing.border.EmptyBorder;
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.classes.Paciente;
+import br.ufc.clinic.classes.PlanoSaude;
 import br.ufc.clinic.repository.GenericRepository;
 
-public class ViewCadastraConsultaParticular extends JDialog {
+public class ViewCadastrarConsultaPlano extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField dia;
@@ -32,7 +33,7 @@ public class ViewCadastraConsultaParticular extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewCadastraConsultaParticular dialog = new ViewCadastraConsultaParticular(new Atendente("dsdsd"));
+			ViewCadastrarConsultaPlano dialog = new ViewCadastrarConsultaPlano(new Atendente("dsdsd"));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -40,8 +41,8 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		}
 	}
 
-	public ViewCadastraConsultaParticular(final Atendente atendente) {
-		setBounds(100, 100, 635, 469);
+	public ViewCadastrarConsultaPlano(final Atendente atendente) {
+		setBounds(100, 100, 823, 488);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -95,11 +96,6 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		lblPre.setBounds(26, 227, 70, 15);
 		contentPanel.add(lblPre);
 		
-		final JSpinner preco = new JSpinner();
-		preco.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
-		preco.setBounds(134, 225, 93, 20);
-		contentPanel.add(preco);
-		
 		JLabel lblPaciente = new JLabel("Paciente");
 		lblPaciente.setBounds(298, 78, 70, 15);
 		contentPanel.add(lblPaciente);
@@ -136,6 +132,24 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		
 		medicos.setBounds(424, 113, 181, 242);
 		contentPanel.add(medicos);
+		
+		JLabel lblPlanoDeSade = new JLabel("Plano de Saúde");
+		lblPlanoDeSade.setBounds(646, 75, 114, 15);
+		contentPanel.add(lblPlanoDeSade);
+		
+		GenericRepository<PlanoSaude> planosRepository = new GenericRepository<PlanoSaude>("plano_saude");
+		planosRepository.create();
+		planosRepository.load();
+		planosRepository.pull();
+		
+		final List planos = new List();
+		for(PlanoSaude p : planosRepository.get()){
+			planos.add(p.toString());
+		}
+		
+		
+		planos.setBounds(611, 113, 182, 242);
+		contentPanel.add(planos);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -173,16 +187,12 @@ public class ViewCadastraConsultaParticular extends JDialog {
 							JOptionPane.showMessageDialog(null, "Digite uma hora valida!!!");
 							return;
 						}
-						double pre;
-						try {
-							pre = Double.parseDouble(preco.getValue().toString());
-						} catch (Exception e2) {
-							JOptionPane.showMessageDialog(null, "Digite um preco Valido!!!");
-							return;
-						}
 						
 						String pacienteString = pacientes.getSelectedItem();
 						String medicoString = medicos.getSelectedItem();
+						String planoString = planos.getSelectedItem();
+						
+						
 						
 						if(pacienteString == null){
 							JOptionPane.showMessageDialog(null, "Selecione um Paciente!!");
@@ -192,18 +202,31 @@ public class ViewCadastraConsultaParticular extends JDialog {
 							JOptionPane.showMessageDialog(null, "Selecione um Medico!!");
 							return;
 						}
+						if(planoString == null){
+							JOptionPane.showMessageDialog(null, "Selecione um Plano de Saúde!!");
+							return;
+						}
+						
+					
 						int indexPaciente = pacienteString.indexOf("-");
 						int indexMedico = medicoString.indexOf("-");
+						int indexPlano = planoString.indexOf("-");
+						
 						
 						String nomePaciente = pacienteString.substring(0, indexPaciente);
 						String nomeMedico = medicoString.substring(0, indexMedico);
+						String razaoPlano = planoString.substring(0, indexPlano);
+						
 						long cpf = Long.parseLong(pacienteString.substring(indexPaciente+1, pacienteString.length()));
 						long crm = Long.parseLong(medicoString.substring(indexMedico+1, medicoString.length()));
+						long cnpj = Long.parseLong(planoString.substring(indexPlano+1, planoString.length()));
+						
 						
 						Paciente p = new Paciente(nomePaciente, cpf);
 						Medico m = new Medico(nomeMedico, crm);
+						PlanoSaude pla = new PlanoSaude(razaoPlano, cnpj);
 						
-						atendente.cadastrarConsultaParticular(ident, min, da, ho, p, m, pre);
+						atendente.cadastrarConsultaPorPlano(ident, min, da, ho, p, m, pla);
 						JOptionPane.showMessageDialog(null, "Consulta cadastrada com Sucesso!!!");
 					}
 				});

@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.ufc.clinic.classes.Atendente;
+import br.ufc.clinic.view.cadastros.ViewCadastraConsultaParticular;
 import br.ufc.clinic.view.cadastros.ViewCadastraPaciente;
+import br.ufc.clinic.view.cadastros.ViewCadastrarConsultaPlano;
 import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
@@ -180,9 +182,11 @@ public class ViewAtendente extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				ViewEscolherConsulta escolha = new ViewEscolherConsulta();
 				if(escolha.getTipoConsulta() == 1){
-					
+					@SuppressWarnings("unused")
+					ViewCadastraConsultaParticular viewCConsultaParticular = new ViewCadastraConsultaParticular(atendente);
 				}else if(escolha.getTipoConsulta() == 2){
-					
+					@SuppressWarnings("unused")
+					ViewCadastrarConsultaPlano viewCConsultaPorPlano = new ViewCadastrarConsultaPlano(atendente);
 				}else{
 					return;
 				}
