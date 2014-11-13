@@ -1,17 +1,19 @@
 package br.ufc.clinic.view.visoes;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.view.cadastros.ViewCadastraPaciente;
@@ -35,14 +37,27 @@ public class ViewAtendente extends JDialog {
 
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 581, 414);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setMargin(new Insets(0, 0, 0, 1));
+		menuBar.setMargin(new Insets(0, 0, 0, 0));
 		
 		JMenu Menu = new JMenu("Menu");
 		menuBar.add(Menu);
+		
+		System.out.println(getClass().getResource("/resources/background.jpg"));
+		
+		JPanel panel = new JPanel() {
+			private static final long serialVersionUID = 1L;
+			ImageIcon bg = new ImageIcon(getClass().getResource("/resources/background.jpg"));
+			protected void paintComponent(Graphics g) {
+				g.drawImage(bg.getImage(), 0, 0, getWidth(), getHeight(), this);
+			}
+		};
+		frame.setContentPane(panel);
+		
 		
 		JMenuItem Salvar = new JMenuItem("Salvar");
 		Menu.add(Salvar);
@@ -166,30 +181,15 @@ public class ViewAtendente extends JDialog {
 		JMenuItem DesmarcaConsulta = new JMenuItem("Desmarca Consulta");
 		Consultas.add(DesmarcaConsulta);
 		
-		JMenu Relatrios = new JMenu("Relatórios");
-		menuBar.add(Relatrios);
+		JMenu Relatorios = new JMenu("Relatórios");
+		menuBar.add(Relatorios);
 		
 		JMenuItem HorariosLivresMdicos = new JMenuItem("Horários Livres Médicos ");
-		Relatrios.add(HorariosLivresMdicos);
+		Relatorios.add(HorariosLivresMdicos);
 		
 		JMenuItem ConsultarMdico = new JMenuItem("Consultar Médico");
-		Relatrios.add(ConsultarMdico);
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(6)
-					.addComponent(menuBar, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(menuBar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(317, Short.MAX_VALUE))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		Relatorios.add(ConsultarMdico);
+		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 	}
 }
