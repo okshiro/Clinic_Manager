@@ -1,4 +1,4 @@
-package br.ufc.clinic.view.visualizar;
+package br.ufc.clinic.view.visoes;
 
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -18,6 +18,10 @@ import br.ufc.clinic.view.cadastros.ViewCadastraPaciente;
 import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
+import br.ufc.clinic.view.visualizar.ViewVisualizarGerente;
+import br.ufc.clinic.view.visualizar.ViewVisualizarMedico;
+import br.ufc.clinic.view.visualizar.ViewVisualizarPaciente;
+import br.ufc.clinic.view.visualizar.ViewVisualizarPlanosSaude;
 
 public class ViewAtendente extends JDialog {
 	private static final long serialVersionUID = 1L;

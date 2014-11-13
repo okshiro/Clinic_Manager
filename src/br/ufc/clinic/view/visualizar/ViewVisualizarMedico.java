@@ -84,7 +84,7 @@ public class ViewVisualizarMedico extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						String select = listaMedicos.getSelectedItem();
 						if(select == null){
-							JOptionPane.showMessageDialog(null, "Selecione um Paciente!!");
+							JOptionPane.showMessageDialog(null, "Selecione um Medico!!");
 							return;
 						}
 						int index = select.indexOf("-");
