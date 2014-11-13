@@ -47,8 +47,6 @@ public class ViewAtendente extends JDialog {
 		JMenu Menu = new JMenu("Menu");
 		menuBar.add(Menu);
 		
-		System.out.println(getClass().getResource("/resources/background.jpg"));
-		
 		JPanel panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 			ImageIcon bg = new ImageIcon(getClass().getResource("/resources/background.jpg"));
