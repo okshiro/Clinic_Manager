@@ -37,6 +37,7 @@ public class GenericRepository<T> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.load();
 	};
 
 	public void destroy(){

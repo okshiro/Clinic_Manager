@@ -109,5 +109,14 @@ public class Atendente extends Funcionario {
 		consulta.push();
 	}
 	
+	public void cadastraEspecialidade(int id, String nome){
+		GenericRepository<Especialidade> especialidades = new GenericRepository<Especialidade>("especialidade");
+		especialidades.create();
+		especialidades.load();
+		especialidades.pull();
+		especialidades.add(new Especialidade(id, nome));
+		especialidades.push();
+	}
+	
 
 }

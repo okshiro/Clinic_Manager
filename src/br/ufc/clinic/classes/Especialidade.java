@@ -38,7 +38,7 @@ public class Especialidade implements Serializable{
 	
 	@Override
 	public String toString() {
-		return  this.codigo + ":" + this.nome;
+		return  this.codigo + "-" + this.nome;
 	}
 
 }

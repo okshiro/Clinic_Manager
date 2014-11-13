@@ -17,12 +17,14 @@ import javax.swing.JPanel;
 
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.view.cadastros.ViewCadastraConsultaParticular;
+import br.ufc.clinic.view.cadastros.ViewCadastraEspecialidade;
 import br.ufc.clinic.view.cadastros.ViewCadastraPaciente;
 import br.ufc.clinic.view.cadastros.ViewCadastrarConsultaPlano;
 import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
 import br.ufc.clinic.view.opcoes.ViewEscolherConsulta;
+import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
 import br.ufc.clinic.view.visualizar.ViewVisualizarGerente;
 import br.ufc.clinic.view.visualizar.ViewVisualizarMedico;
 import br.ufc.clinic.view.visualizar.ViewVisualizarPaciente;
@@ -123,6 +125,18 @@ public class ViewAtendente extends JDialog {
 		
 		Cadastros.add(mntmCadastroPlanoDe);
 		
+		JMenuItem mntmCadastrarEspecialidade = new JMenuItem("Cadastrar Especialidade");
+		mntmCadastrarEspecialidade.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewCadastraEspecialidade viewCadastraEspecialidade = new ViewCadastraEspecialidade(atendente);
+			}
+		});
+		
+		
+		Cadastros.add(mntmCadastrarEspecialidade);
+		
 		JMenu mnVisualizar = new JMenu("Visualizar");
 		menuBar.add(mnVisualizar);
 		
@@ -172,6 +186,17 @@ public class ViewAtendente extends JDialog {
 		
 		JMenuItem mntmConsultas = new JMenuItem("Consultas");
 		mnVisualizar.add(mntmConsultas);
+		
+		JMenuItem mntmEspecialidades = new JMenuItem("Especialidades");
+		mntmEspecialidades.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unused")
+				ViewVisualizarEspecialidade viewEspecialidades = new ViewVisualizarEspecialidade();
+			}
+		});
+		
+		mnVisualizar.add(mntmEspecialidades);
 		
 		JMenu Consultas = new JMenu("Consultas");
 		menuBar.add(Consultas);
