@@ -1,10 +1,12 @@
 package br.ufc.clinic.classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Consulta {
-	
+public class Consulta  implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	
 	private int duracaoMinutos;
