@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Paciente;
 import br.ufc.clinic.classes.PlanoSaude;
 import br.ufc.clinic.repository.GenericRepository;
 
@@ -69,6 +70,35 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 				buttonPane.add(sairButton);
 				getRootPane().setDefaultButton(sairButton);
 			
+				{
+					JButton excluirButton = new JButton("Excluir");
+					excluirButton.addActionListener(new ActionListener() {
+						
+						public void actionPerformed(ActionEvent e) {
+							String select = listPlanos.getSelectedItem();
+							if(select == null){
+								JOptionPane.showMessageDialog(null, "Selecione um Plano de Saude!!");
+								return;
+							}
+							int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir esse PLano de Saude?");
+							if(opcao > 0){
+								return;
+							}
+							
+							int index = select.indexOf("-");
+							
+							String razao = select.substring(0, index);
+							long cnpj = Long.parseLong(select.substring(index+1, select.length()));
+							listPlanos.remove(listPlanos.getSelectedIndex());
+							planos.rem(new PlanoSaude(razao, cnpj));
+							JOptionPane.showMessageDialog(null, "Plano de Saude Removido com Sucesso!!!");
+						}
+					});
+					excluirButton.setActionCommand("Excluir");
+					buttonPane.add(excluirButton);
+					getRootPane().setDefaultButton(excluirButton);
+				}
+				
 			
 				JButton detalhesButton = new JButton("Detalhes");
 				detalhesButton.addActionListener(new ActionListener() {
