@@ -12,14 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.ufc.clinic.classes.ConsultaParticular;
+import br.ufc.clinic.classes.ConsultaPorPlano;
 
 public class ViewConsultaPorPlano extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	
-	public ViewConsultaPorPlano(ConsultaParticular consultaParticular) {
-		setBounds(100, 100, 516, 330);
+	public ViewConsultaPorPlano(ConsultaPorPlano p) {
+		setBounds(100, 100, 516, 383);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -61,29 +61,39 @@ public class ViewConsultaPorPlano extends JDialog {
 			contentPanel.add(lblMdico);
 		}
 		
-		JLabel identificacao = new JLabel(Integer.toString(consultaParticular.getId()));
+		JLabel identificacao = new JLabel(Integer.toString(p.getId()));
 		identificacao.setBounds(134, 58, 178, 15);
 		contentPanel.add(identificacao);
 		
-		JLabel duracao = new JLabel(Double.toString(consultaParticular.getDuracao()));
+		JLabel duracao = new JLabel(Double.toString(p.getDuracao()));
 		duracao.setBounds(111, 85, 178, 15);
 		contentPanel.add(duracao);
 		
-		JLabel data = new JLabel(consultaParticular.getDia().toString());
+		JLabel data = new JLabel(p.getDia().toString());
 		data.setBounds(77, 112, 158, 15);
 		contentPanel.add(data);
 		
-		JLabel hora = new JLabel(consultaParticular.getHora().toString());
+		JLabel hora = new JLabel(p.getHora().toString());
 		hora.setBounds(77, 139, 128, 15);
 		contentPanel.add(hora);
 		
-		JLabel paciente = new JLabel(consultaParticular.getPaciente().toString());
+		JLabel paciente = new JLabel(p.getPaciente().toString());
 		paciente.setBounds(100, 172, 384, 15);
 		contentPanel.add(paciente);
 		
-		JLabel medico = new JLabel(consultaParticular.getMedico().toString());
+		JLabel medico = new JLabel(p.getMedico().toString());
 		medico.setBounds(90, 207, 394, 15);
 		contentPanel.add(medico);
+		{
+			JLabel lblPlanoDeSade = new JLabel("Plano de Saúde:");
+			lblPlanoDeSade.setBounds(29, 236, 128, 15);
+			contentPanel.add(lblPlanoDeSade);
+		}
+		{
+			JLabel planoSaude = new JLabel(p.getPlanoSaude().toString());
+			planoSaude.setBounds(154, 236, 315, 15);
+			contentPanel.add(planoSaude);
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

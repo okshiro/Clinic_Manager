@@ -2,30 +2,28 @@ package br.ufc.clinic.view.visualizar;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 
-import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
 import br.ufc.clinic.repository.GenericRepository;
 
-import java.awt.Font;
-import java.awt.List;
-
-public class VisualizarConsultaPorPlano extends JDialog {
+public class ViewVisualizarConsultaPorPlano extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
 	public static void main(String[] args) {
 		try {
-			VisualizarConsultaPorPlano dialog = new VisualizarConsultaPorPlano();
+			ViewVisualizarConsultaPorPlano dialog = new ViewVisualizarConsultaPorPlano();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +34,7 @@ public class VisualizarConsultaPorPlano extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public VisualizarConsultaPorPlano() {
+	public ViewVisualizarConsultaPorPlano() {
 		setBounds(100, 100, 402, 394);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,8 +97,8 @@ public class VisualizarConsultaPorPlano extends JDialog {
 						}
 						for(ConsultaPorPlano p : cplano.get()){
 							if(p.getId() == id){
-								//@SuppressWarnings("unused")
-								//ViewConsultaParticular consPart = new ViewConsultaParticular(p);
+								@SuppressWarnings("unused")
+								ViewConsultaPorPlano consPlano = new ViewConsultaPorPlano(p);
 								return;
 							};
 						}

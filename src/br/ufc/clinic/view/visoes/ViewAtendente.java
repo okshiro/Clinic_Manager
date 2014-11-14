@@ -25,6 +25,7 @@ import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
 import br.ufc.clinic.view.opcoes.ViewEscolherConsulta;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaParticular;
+import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaPorPlano;
 import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
 import br.ufc.clinic.view.visualizar.ViewVisualizarGerente;
 import br.ufc.clinic.view.visualizar.ViewVisualizarMedico;
@@ -195,7 +196,7 @@ public class ViewAtendente extends JDialog {
 					ViewVisualizarConsultaParticular viewConsultaParticular = new ViewVisualizarConsultaParticular();
 				}else if(escolha.getTipoConsulta() == 2){
 					@SuppressWarnings("unused")
-					ViewCadastrarConsultaPlano viewCConsultaPorPlano = new ViewCadastrarConsultaPlano(atendente);
+					ViewVisualizarConsultaPorPlano viewConsultaPorPlano = new ViewVisualizarConsultaPorPlano();
 				}else{
 					return;
 				}
