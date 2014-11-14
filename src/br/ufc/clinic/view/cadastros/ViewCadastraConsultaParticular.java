@@ -20,6 +20,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Atendente;
+import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.classes.Paciente;
 import br.ufc.clinic.repository.GenericRepository;
@@ -152,6 +153,16 @@ public class ViewCadastraConsultaParticular extends JDialog {
 							JOptionPane.showMessageDialog(null, "Digite uma Identificação Valida!!!");
 							return;
 						}
+						GenericRepository<ConsultaParticular> consulta = new GenericRepository<ConsultaParticular>("consulta_particular");
+						consulta.create();
+						consulta.pull();
+						for(ConsultaParticular p: consulta.get()){
+							if(p.getId() == ident){
+								JOptionPane.showMessageDialog(null, "Identificação já existe!!!");
+								return;
+							}
+						}
+						
 						int min;
 						try {
 							min = Integer.parseInt(duracao.getValue().toString());
@@ -205,6 +216,7 @@ public class ViewCadastraConsultaParticular extends JDialog {
 						
 						atendente.cadastrarConsultaParticular(ident, min, da, ho, p, m, pre);
 						JOptionPane.showMessageDialog(null, "Consulta cadastrada com Sucesso!!!");
+						dispose();
 					}
 				});
 				

@@ -77,4 +77,12 @@ public class Consulta  implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	//SOBRESCRITAS
+	@Override
+	public String toString() {
+		return this.id + " : " + paciente.toString();
+	}
+	
+	
 }

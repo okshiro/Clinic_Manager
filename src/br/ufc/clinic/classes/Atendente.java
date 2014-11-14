@@ -92,7 +92,6 @@ public class Atendente extends Funcionario {
 		ConsultaParticular c = new ConsultaParticular(id, duracao, dia, hora, paciente, medico, preco);
 		GenericRepository<ConsultaParticular> consulta = new GenericRepository<ConsultaParticular>("consulta_particular");
 		consulta.create();
-		consulta.load();
 		consulta.pull();
 		consulta.add(c);
 		consulta.push();

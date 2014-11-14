@@ -24,6 +24,7 @@ import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
 import br.ufc.clinic.view.opcoes.ViewEscolherConsulta;
+import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaParticular;
 import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
 import br.ufc.clinic.view.visualizar.ViewVisualizarGerente;
 import br.ufc.clinic.view.visualizar.ViewVisualizarMedico;
@@ -185,6 +186,22 @@ public class ViewAtendente extends JDialog {
 		mnVisualizar.add(mntmPlanosDeSade);
 		
 		JMenuItem mntmConsultas = new JMenuItem("Consultas");
+		mntmConsultas.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				ViewEscolherConsulta escolha = new ViewEscolherConsulta();
+				if(escolha.getTipoConsulta() == 1){
+					@SuppressWarnings("unused")
+					ViewVisualizarConsultaParticular viewConsultaParticular = new ViewVisualizarConsultaParticular();
+				}else if(escolha.getTipoConsulta() == 2){
+					@SuppressWarnings("unused")
+					ViewCadastrarConsultaPlano viewCConsultaPorPlano = new ViewCadastrarConsultaPlano(atendente);
+				}else{
+					return;
+				}
+			}
+		});
+		
 		mnVisualizar.add(mntmConsultas);
 		
 		JMenuItem mntmEspecialidades = new JMenuItem("Especialidades");

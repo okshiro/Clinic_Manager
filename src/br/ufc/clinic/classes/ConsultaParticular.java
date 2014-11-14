@@ -27,6 +27,5 @@ public class ConsultaParticular extends Consulta {
 		this.valorPagar = valorPagar;
 	}
 	
-	
 
 }
