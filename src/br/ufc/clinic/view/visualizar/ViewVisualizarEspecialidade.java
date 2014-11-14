@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -44,46 +45,60 @@ public class ViewVisualizarEspecialidade extends JDialog {
 			lblEspecialidades.setBounds(124, 12, 178, 23);
 			contentPanel.add(lblEspecialidades);
 		}
-		{
 			
-			GenericRepository<Especialidade> esp = new GenericRepository<Especialidade>("especialidade");
+			final GenericRepository<Especialidade> esp = new GenericRepository<Especialidade>("especialidade");
 			esp.create();
 			esp.pull();
-			List especialidades = new List();
+			final List especialidades = new List();
 			for(Especialidade e : esp.get()){
 				especialidades.add(e.toString());
 			}
 			
 			especialidades.setBounds(10, 46, 388, 213);
 			contentPanel.add(especialidades);
-		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
+				JButton sairButton = new JButton("Sair");
+				sairButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
 				
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				sairButton.setActionCommand("Sair");
+				buttonPane.add(sairButton);
+				getRootPane().setDefaultButton(sairButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
+				JButton excluirButton = new JButton("Excluir");
+				excluirButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						String select = especialidades.getSelectedItem();
+						if(select == null){
+							JOptionPane.showMessageDialog(null, "Selecione uma Especialidade!!!");
+							return;
+						}
+						if(JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir essa Especialidade?") > 0){
+							return;
+						}
+						
+						int index = select.indexOf("-");
+						int id = Integer.parseInt(select.substring(0, index));
+						String nome = select.substring(index+1, select.length());
+						especialidades.remove(especialidades.getSelectedIndex());
+						System.out.println(id + " : " + nome);
+						esp.rem(new Especialidade(id, nome));
+						JOptionPane.showMessageDialog(null, "Especialidade Excluida com Sucesso!!!");
+						return;
 					}
 				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				excluirButton.setActionCommand("EXCLUIR");
+				buttonPane.add(excluirButton);
 			}
 		}
 		setModal(true);

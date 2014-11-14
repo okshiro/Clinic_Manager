@@ -21,7 +21,6 @@ public class App {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		control = new Controlador();
 		usuario = control.login();
 		if(usuario != null){

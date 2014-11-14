@@ -36,9 +36,17 @@ public class Especialidade implements Serializable{
 		this.nome = nome;
 	}
 	
+	//SOBRESCRITAS
+	
 	@Override
 	public String toString() {
 		return  this.codigo + "-" + this.nome;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getCodigo() == ((Especialidade)obj).getCodigo();
+	}
+	
 
 }
