@@ -239,9 +239,6 @@ public class ViewAtendente extends JDialog {
 		
 		Consultas.add(MarcarConsulta);
 		
-		JMenuItem DesmarcaConsulta = new JMenuItem("Desmarca Consulta");
-		Consultas.add(DesmarcaConsulta);
-		
 		JMenu Relatorios = new JMenu("Relatórios");
 		menuBar.add(Relatorios);
 		

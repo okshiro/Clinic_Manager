@@ -1,13 +1,10 @@
 package br.ufc.clinic;
 
 import javax.swing.UIManager;
-
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Funcionario;
 import br.ufc.clinic.controler.Controlador;
 import br.ufc.clinic.view.visoes.ViewAtendente;
-
-
 
 
 public class App {

@@ -119,6 +119,16 @@ public class ViewMedico extends JDialog {
 			contentPanel.add(listDiasTrabalha);
 		}
 		{
+			JLabel nome = new JLabel(m.getNome());
+			nome.setBounds(81, 51, 214, 15);
+			contentPanel.add(nome);
+		}
+		{
+			JLabel crm = new JLabel(Long.toString(m.getCrm()));
+			crm.setBounds(77, 85, 180, 15);
+			contentPanel.add(crm);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
