@@ -90,17 +90,22 @@ public class ViewMedico extends JDialog {
 				cparticular.pull();
 				
 				
+				
 				List<Consulta> consultas = new ArrayList<Consulta>();
 				for(ConsultaParticular cp: cparticular.get()){
-					consultas.add(cp);
+					consultas.add((Consulta)cp);
 				}
 				for(ConsultaPorPlano cp: cplano.get()){
-					consultas.add(cp);
+					consultas.add((Consulta)cp);
 				}
 				
-				for(Consulta c : consultas){
-					if(!c.getMedico().equals(medico)){
-						consultas.remove(c);
+				
+				System.out.println(consultas.size());
+				for(int i =0 ; i< consultas.size(); i++){
+					if(consultas.get(i).getMedico() != null){
+						if(!consultas.get(i).getMedico().equals(medico)){
+							consultas.remove(consultas.get(i));
+						}
 					}
 				}
 				@SuppressWarnings("unused")
