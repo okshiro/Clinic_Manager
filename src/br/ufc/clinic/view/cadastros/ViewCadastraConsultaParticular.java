@@ -77,7 +77,7 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		contentPanel.add(lblDia);
 		
 		dia = new JTextField();
-		dia.setText("yyyy-MM-dd");
+		dia.setText(LocalDate.now().toString());
 		dia.setBounds(134, 151, 94, 19);
 		contentPanel.add(dia);
 		dia.setColumns(10);
@@ -87,7 +87,7 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		contentPanel.add(lblHora);
 		
 		hora = new JTextField();
-		hora.setText("hh:MM");
+		hora.setText(LocalTime.now().toString());
 		hora.setBounds(134, 185, 93, 19);
 		contentPanel.add(hora);
 		hora.setColumns(10);
