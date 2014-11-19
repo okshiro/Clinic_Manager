@@ -228,6 +228,7 @@ public class ViewCadastrarConsultaPlano extends JDialog {
 						
 						atendente.cadastrarConsultaPorPlano(ident, min, da, ho, p, m, pla);
 						JOptionPane.showMessageDialog(null, "Consulta cadastrada com Sucesso!!!");
+						dispose();
 					}
 				});
 				
