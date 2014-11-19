@@ -1,8 +1,12 @@
 package br.ufc.clinic.classes;
 
+import java.io.Serializable;
+
 import br.ufc.clinic.ferramentas.Ferramentas;
 
-public class Observacao {
+public class Observacao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String descricao;
 	private TipoObservacao tipoObservacao;
 	

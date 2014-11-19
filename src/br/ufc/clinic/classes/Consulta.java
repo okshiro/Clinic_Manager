@@ -58,6 +58,9 @@ public class Consulta  implements Serializable{
 	}
 	
 	public List<Observacao> getObservacao() {
+		if(this.observacao == null){
+			this.observacao = new ArrayList<Observacao>();
+		}
 		return observacao;
 	}
 	
@@ -88,6 +91,9 @@ public class Consulta  implements Serializable{
 	}
 	
 	public void setObservacao(Observacao observacao) {
+		if(this.observacao == null){
+			this.observacao = new ArrayList<Observacao>();
+		}
 		this.observacao.add(observacao);
 	}
 	
@@ -97,6 +103,10 @@ public class Consulta  implements Serializable{
 		return this.id + " : " + paciente.toString();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return getId() == ((Consulta) obj).getId();
+	}
 	
 
 	

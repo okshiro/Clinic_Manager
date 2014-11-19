@@ -16,8 +16,11 @@ import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Consulta;
+import br.ufc.clinic.classes.ConsultaParticular;
+import br.ufc.clinic.classes.ConsultaPorPlano;
 import br.ufc.clinic.classes.Observacao;
 import br.ufc.clinic.classes.TipoObservacao;
+import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewCadastrarObservacao extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -99,7 +102,24 @@ public class ViewCadastrarObservacao extends JDialog {
 						}
 						if(adicionada){
 							JOptionPane.showMessageDialog(null, "Observação Adicionada Com Sucesso!!!");
-							dispose();
+							if(consulta  instanceof ConsultaPorPlano){
+								GenericRepository<ConsultaPorPlano> repConsulta = new GenericRepository<ConsultaPorPlano>("consulta_plano");
+								repConsulta.create();
+								repConsulta.load();
+								repConsulta.pull();
+								repConsulta.rem((ConsultaPorPlano) consulta);
+								repConsulta.add((ConsultaPorPlano) consulta);
+								dispose();
+							}else{
+								GenericRepository<ConsultaParticular> repConsulta = new GenericRepository<ConsultaParticular>("consulta_particular");
+								repConsulta.create();
+								repConsulta.load();
+								repConsulta.pull();
+								repConsulta.rem((ConsultaParticular) consulta);
+								repConsulta.add((ConsultaParticular) consulta);
+								dispose();
+							}
+							
 						}
 						
 					}
