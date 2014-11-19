@@ -2,20 +2,22 @@ package br.ufc.clinic.view.cadastros;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Consulta;
-
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-
-import java.awt.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import br.ufc.clinic.classes.Observacao;
+import br.ufc.clinic.classes.TipoObservacao;
 
 public class ViewCadastrarObservacao extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -26,14 +28,13 @@ public class ViewCadastrarObservacao extends JDialog {
 		try {
 			ViewCadastrarObservacao dialog = new ViewCadastrarObservacao(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	
-	public ViewCadastrarObservacao(Consulta consulta) {
+	public ViewCadastrarObservacao(final Consulta consulta) {
 		setBounds(100, 100, 450, 448);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,30 +45,33 @@ public class ViewCadastrarObservacao extends JDialog {
 			lblAdicionarUmaObervao.setBounds(144, 12, 221, 15);
 			contentPanel.add(lblAdicionarUmaObervao);
 		}
-		{
-			JRadioButton queixas = new JRadioButton("Queixas Paciente");
+			final JRadioButton queixas = new JRadioButton("Queixas Paciente");
 			queixas.setBounds(8, 75, 277, 23);
 			contentPanel.add(queixas);
-		}
-		{
-			JRadioButton preescricoes = new JRadioButton("Preescrições Medicas");
+		
+			final JRadioButton preescricoes = new JRadioButton("Preescrições Medicas");
 			preescricoes.setBounds(8, 111, 231, 23);
 			contentPanel.add(preescricoes);
-		}
-		{
-			JRadioButton resultados = new JRadioButton("Resultados dos Exames e Respotas aos Tratamentos");
+		
+			final JRadioButton resultados = new JRadioButton("Resultados dos Exames e Respotas aos Tratamentos");
 			resultados.setBounds(8, 35, 390, 23);
 			contentPanel.add(resultados);
-		}
+		
+			ButtonGroup group = new ButtonGroup();
+			group.add(queixas);
+			group.add(preescricoes);
+			group.add(resultados);
+		
+		
 		{
 			JLabel lblDescrio = new JLabel("Descrição:");
 			lblDescrio.setBounds(18, 142, 98, 15);
 			contentPanel.add(lblDescrio);
 		}
 		
-		List list = new List();
-		list.setBounds(8, 166, 412, 189);
-		contentPanel.add(list);
+		final TextArea descricao = new TextArea();
+		descricao.setBounds(8, 163, 412, 202);
+		contentPanel.add(descricao);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -77,19 +81,46 @@ public class ViewCadastrarObservacao extends JDialog {
 				cadastrarButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent e) {
+						boolean adicionada = false;
+						if(queixas.isSelected()){
+							Observacao o = new Observacao(descricao.getText(), TipoObservacao.QUEIXAS);
+							consulta.setObservacao(o);
+							adicionada = true;
+						}else if(preescricoes.isSelected()){
+							Observacao o = new Observacao(descricao.getText(), TipoObservacao.PREESCRIOES);
+							consulta.setObservacao(o);
+							adicionada = true;
+						}else if(resultados.isSelected()){
+							Observacao o = new Observacao(descricao.getText(), TipoObservacao.RESULTAS);
+							consulta.setObservacao(o);
+							adicionada = true;
+						}else{
+							JOptionPane.showMessageDialog(null, "Por Favor, selecione uma Opção!!!");
+						}
+						if(adicionada){
+							JOptionPane.showMessageDialog(null, "Observação Adicionada Com Sucesso!!!");
+							dispose();
+						}
 						
 					}
 				});
 				
-				cadastrarButton.setActionCommand("OK");
 				buttonPane.add(cadastrarButton);
 				getRootPane().setDefaultButton(cadastrarButton);
 			}
 			{
 				JButton sairButton = new JButton("Sair");
+				sairButton.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				sairButton.setActionCommand("Cancel");
 				buttonPane.add(sairButton);
 			}
+			setModal(true);
+			setVisible(true);
 		}
 	}
 }

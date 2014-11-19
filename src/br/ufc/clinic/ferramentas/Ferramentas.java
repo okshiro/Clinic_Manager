@@ -1,6 +1,7 @@
 package br.ufc.clinic.ferramentas;
 
 import br.ufc.clinic.classes.DiaSemana;
+import br.ufc.clinic.classes.TipoObservacao;
 
 public class Ferramentas {
 	public static String  DiaSemanaToString(DiaSemana d){
@@ -19,5 +20,11 @@ public class Ferramentas {
 			   d.equals("QUARTA")  ? DiaSemana.QUARTA :
 			   d.equals("QUINTA")  ? DiaSemana.QUINTA :
 			   d.equals("SEXTA")  ? DiaSemana.SEXTA :  DiaSemana.SABADO; 
+	}
+	
+	public static String TipoObservacaoToString(TipoObservacao t){
+		return t == TipoObservacao.QUEIXAS ? "QUEIXAS" :
+			   t == TipoObservacao.PREESCRIOES ? "PREESCRIÇÔES" : "RESULTADOS";
+			  
 	}
 }

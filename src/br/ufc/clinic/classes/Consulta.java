@@ -3,6 +3,8 @@ package br.ufc.clinic.classes;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Consulta  implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,9 +18,10 @@ public class Consulta  implements Serializable{
 	private Paciente paciente;
 	private Medico medico;
 	
-	private Observacao observacao;
+	private  List<Observacao> observacao;
 	
 	public Consulta(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico) {
+		observacao = new ArrayList<Observacao>();
 		setId(id);
 		setDia(dia);
 		setHora(hora);
@@ -54,7 +57,7 @@ public class Consulta  implements Serializable{
 		return id;
 	}
 	
-	public Observacao getObservacao() {
+	public List<Observacao> getObservacao() {
 		return observacao;
 	}
 	
@@ -85,7 +88,7 @@ public class Consulta  implements Serializable{
 	}
 	
 	public void setObservacao(Observacao observacao) {
-		this.observacao = observacao;
+		this.observacao.add(observacao);
 	}
 	
 	//SOBRESCRITAS

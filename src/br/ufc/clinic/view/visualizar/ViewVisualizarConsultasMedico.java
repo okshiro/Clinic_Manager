@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import br.ufc.clinic.classes.Consulta;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
+import br.ufc.clinic.view.cadastros.ViewCadastrarObservacao;
 import br.ufc.clinic.view.opcoes.ViewOptionAdicaoOuVisualizacaoObservacao;
 
 public class ViewVisualizarConsultasMedico extends JDialog {
@@ -79,10 +80,41 @@ public class ViewVisualizarConsultasMedico extends JDialog {
 			btnObservacoes.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
+					String select = listConsultas.getSelectedItem();
+					if(select == null){
+						JOptionPane.showMessageDialog(null, "Selecione uma Consulta!!!");
+						return;
+					}
+					int i = select.indexOf(":");
+					int id;
+					try {
+						id = Integer.parseInt( select.substring(0, i-1));
+					} catch (Exception e2) {
+						e2.printStackTrace();
+						return;
+					}
+
+					Consulta con = null;
+					for(Consulta c : consultas){
+						if(c.getId() == id){
+							con = c;
+						}
+					}
+					
+					if(con == null){
+						return;
+					}
+					
 					ViewOptionAdicaoOuVisualizacaoObservacao opcaoObservacao = new ViewOptionAdicaoOuVisualizacaoObservacao();
 					int opt = opcaoObservacao.getOpcao();
 					if(!(opt == -1)){
-						System.out.println("djsojdosjdjsodjs");
+						if(opt == 1){
+							@SuppressWarnings("unused")
+							ViewCadastrarObservacao cadastrarObservacao  = new ViewCadastrarObservacao(con);
+						}else if(opt == 2){
+							@SuppressWarnings("unused")
+							ViewObservacaoConsulta observacao = new ViewObservacaoConsulta(con);
+						}
 					}
 				}
 			});

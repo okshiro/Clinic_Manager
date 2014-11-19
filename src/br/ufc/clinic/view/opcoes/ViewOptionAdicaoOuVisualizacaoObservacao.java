@@ -25,7 +25,6 @@ public class ViewOptionAdicaoOuVisualizacaoObservacao extends JDialog {
 		try {
 			ViewOptionAdicaoOuVisualizacaoObservacao dialog = new ViewOptionAdicaoOuVisualizacaoObservacao();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,11 +47,11 @@ public class ViewOptionAdicaoOuVisualizacaoObservacao extends JDialog {
 		contentPanel.add(lblEscolhaUmaOpco);
 		
 		final JRadioButton rdbtnVisualizarObservao = new JRadioButton("Visualizar Observação");
-		rdbtnVisualizarObservao.setBounds(22, 73, 204, 23);
+		rdbtnVisualizarObservao.setBounds(211, 76, 204, 23);
 		contentPanel.add(rdbtnVisualizarObservao);
 		
 		final JRadioButton rdbtnAdicionarObservao = new JRadioButton("Adicionar Observação");
-		rdbtnAdicionarObservao.setBounds(230, 73, 181, 23);
+		rdbtnAdicionarObservao.setBounds(26, 76, 181, 23);
 		contentPanel.add(rdbtnAdicionarObservao);
 		{
 			JPanel buttonPane = new JPanel();
@@ -64,10 +63,10 @@ public class ViewOptionAdicaoOuVisualizacaoObservacao extends JDialog {
 					
 					public void actionPerformed(ActionEvent e) {
 						if(rdbtnAdicionarObservao.isSelected()){
-							opcao = 1;
+							opcao =1;
 							dispose();
 						}else if(rdbtnVisualizarObservao.isSelected()){
-								opcao=2;
+							opcao=2;
 						}
 						dispose();
 					}
@@ -86,6 +85,9 @@ public class ViewOptionAdicaoOuVisualizacaoObservacao extends JDialog {
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnAdicionarObservao);
 		group.add(rdbtnVisualizarObservao);
+	
+		setModal(true);
+		setVisible(true);
 		
 	}
 
