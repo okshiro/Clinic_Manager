@@ -4,9 +4,11 @@ import javax.swing.UIManager;
 
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Funcionario;
+import br.ufc.clinic.classes.Gerente;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.controler.Controlador;
 import br.ufc.clinic.view.visoes.ViewAtendente;
+import br.ufc.clinic.view.visoes.ViewGerente;
 import br.ufc.clinic.view.visoes.ViewMedico;
 
 
@@ -30,6 +32,9 @@ public class App {
 			}else if(usuario instanceof Medico){
 				@SuppressWarnings("unused")
 				ViewMedico window = new ViewMedico((Medico) usuario);
+			}else if(usuario instanceof Gerente){
+				@SuppressWarnings("unused")
+				ViewGerente window = new ViewGerente((Gerente) usuario);
 			}
 		}
 		
