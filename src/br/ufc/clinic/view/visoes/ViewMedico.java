@@ -11,12 +11,14 @@ import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Consulta;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
+import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.repository.GenericRepository;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsulta;
 
@@ -30,7 +32,7 @@ public class ViewMedico extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ViewMedico dialog = new ViewMedico();
+			ViewMedico dialog = new ViewMedico(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +42,7 @@ public class ViewMedico extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewMedico() {
+	public ViewMedico(final Medico medico) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,6 +61,15 @@ public class ViewMedico extends JDialog {
 		menuBar.add(mnMenu);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?","Sair", JOptionPane.YES_NO_OPTION);
+				 if(option == 0){
+					 System.exit(0);
+				 }
+			}
+		});
 		mnMenu.add(mntmSair);
 		
 		JMenu mnConsultas = new JMenu("Consultas");
@@ -87,6 +98,11 @@ public class ViewMedico extends JDialog {
 					consultas.add(cp);
 				}
 				
+				for(Consulta c : consultas){
+					if(!c.getMedico().equals(medico)){
+						consultas.remove(c);
+					}
+				}
 				@SuppressWarnings("unused")
 				ViewVisualizarConsulta viewConsulta = new ViewVisualizarConsulta(consultas);
 				

@@ -2,16 +2,21 @@ package br.ufc.clinic.view.visualizar;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Consulta;
-import javax.swing.JLabel;
-import java.awt.Font;
+import br.ufc.clinic.classes.ConsultaParticular;
+import br.ufc.clinic.classes.ConsultaPorPlano;
 
 public class ViewVisualizarConsulta extends JDialog {
 	
@@ -30,7 +35,7 @@ public class ViewVisualizarConsulta extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewVisualizarConsulta(List<Consulta> consultas) {
+	public ViewVisualizarConsulta(final List<Consulta> consultas) {
 		setBounds(100, 100, 450, 433);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -42,33 +47,74 @@ public class ViewVisualizarConsulta extends JDialog {
 		lblSuasConsultas.setBounds(138, 12, 180, 15);
 		contentPanel.add(lblSuasConsultas);
 		
-		java.awt.List listConsultas = new java.awt.List();
-		if(consultas == null){
-			System.out.println("Lista de Consultas Vazia para Visualizar");
-			return;
-		}
-		for(Consulta c : consultas){
-			listConsultas.add(c.toString());
-			System.out.println("sd");
+		final java.awt.List listConsultas = new java.awt.List();
+		if(consultas != null){
+			for(Consulta c : consultas){
+				listConsultas.add(c.toString());
+				System.out.println("sd");
+			}
 		}
 		
 		
-		listConsultas.setBounds(10, 33, 410, 307);
+		listConsultas.setBounds(10, 33, 417, 307);
 		contentPanel.add(listConsultas);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton sairButton = new JButton("sair");
+				sairButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				sairButton.setActionCommand("OK");
+				buttonPane.add(sairButton);
+				getRootPane().setDefaultButton(sairButton);
 			}
+			
+			JButton btnObservacoes = new JButton("Observações");
+			btnObservacoes.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			
+			buttonPane.add(btnObservacoes);
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton visualizarButton = new JButton("Visualizar");
+				visualizarButton.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent e) {
+						String select = listConsultas.getSelectedItem();
+						if(select == null){
+							JOptionPane.showMessageDialog(null, "Selecione uma Consulta!!!");
+							return;
+						}
+						int i = select.indexOf(":");
+						int id;
+						try {
+							id = Integer.parseInt( select.substring(0, i-1));
+						} catch (Exception e2) {
+							e2.printStackTrace();
+							return;
+						}
+						for(Consulta c : consultas){
+							if(c.getId() == id){
+								if(c instanceof ConsultaParticular){
+									@SuppressWarnings("unused")
+									ViewConsultaParticular consPart = new ViewConsultaParticular((ConsultaParticular) c);
+								}else if(c instanceof ConsultaPorPlano){
+									@SuppressWarnings("unused")
+									ViewConsultaPorPlano consPlano = new ViewConsultaPorPlano((ConsultaPorPlano) c);
+								}
+							};
+						}
+					}
+				});
+				visualizarButton.setActionCommand("Cancel");
+				buttonPane.add(visualizarButton);
 			}
 		}
 		setModal(true);
