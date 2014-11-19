@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.JDialog;
 import javax.swing.JMenu;
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Gerente;
+import br.ufc.clinic.view.visualizar.ViewVisualizarConsultasDia;
 
 public class ViewGerente extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -58,6 +60,21 @@ public class ViewGerente extends JDialog {
 						}
 					});
 					mnMenu.add(mntmSair);
+				}
+			}
+			{
+				JMenu mnConsultas = new JMenu("Consultas");
+				menuBar.add(mnConsultas);
+				{
+					JMenuItem mntmVisualizarConsultas = new JMenuItem("Visualizar Consultas");
+					mntmVisualizarConsultas.addActionListener(new ActionListener() {
+						
+						public void actionPerformed(ActionEvent e) {
+							@SuppressWarnings("unused")
+							ViewVisualizarConsultasDia viewConsultas = new ViewVisualizarConsultasDia(LocalDate.now());
+						}
+					});
+					mnConsultas.add(mntmVisualizarConsultas);
 				}
 			}
 		}
