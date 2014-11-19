@@ -23,7 +23,7 @@ import br.ufc.clinic.view.cadastros.ViewCadastrarConsultaPlano;
 import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
-import br.ufc.clinic.view.opcoes.ViewEscolherConsulta;
+import br.ufc.clinic.view.opcoes.ViewOptionConsulta;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaParticular;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaPorPlano;
 import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
@@ -190,7 +190,7 @@ public class ViewAtendente extends JDialog {
 		mntmConsultas.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				ViewEscolherConsulta escolha = new ViewEscolherConsulta();
+				ViewOptionConsulta escolha = new ViewOptionConsulta();
 				if(escolha.getTipoConsulta() == 1){
 					@SuppressWarnings("unused")
 					ViewVisualizarConsultaParticular viewConsultaParticular = new ViewVisualizarConsultaParticular();
@@ -223,7 +223,7 @@ public class ViewAtendente extends JDialog {
 		MarcarConsulta.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				ViewEscolherConsulta escolha = new ViewEscolherConsulta();
+				ViewOptionConsulta escolha = new ViewOptionConsulta();
 				if(escolha.getTipoConsulta() == 1){
 					@SuppressWarnings("unused")
 					ViewCadastraConsultaParticular viewCConsultaParticular = new ViewCadastraConsultaParticular(atendente);

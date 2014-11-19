@@ -20,7 +20,7 @@ import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.repository.GenericRepository;
-import br.ufc.clinic.view.visualizar.ViewVisualizarConsulta;
+import br.ufc.clinic.view.visualizar.ViewVisualizarConsultasMedico;
 
 public class ViewMedico extends JDialog {
 
@@ -104,7 +104,7 @@ public class ViewMedico extends JDialog {
 					}
 				}
 				@SuppressWarnings("unused")
-				ViewVisualizarConsulta viewConsulta = new ViewVisualizarConsulta(consultas);
+				ViewVisualizarConsultasMedico viewConsulta = new ViewVisualizarConsultasMedico(consultas);
 				
 				
 			}

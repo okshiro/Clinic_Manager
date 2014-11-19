@@ -17,15 +17,16 @@ import javax.swing.border.EmptyBorder;
 import br.ufc.clinic.classes.Consulta;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
+import br.ufc.clinic.view.opcoes.ViewOptionAdicaoOuVisualizacaoObservacao;
 
-public class ViewVisualizarConsulta extends JDialog {
+public class ViewVisualizarConsultasMedico extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarConsulta dialog = new ViewVisualizarConsulta(null);
+			ViewVisualizarConsultasMedico dialog = new ViewVisualizarConsultasMedico(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,7 +36,7 @@ public class ViewVisualizarConsulta extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewVisualizarConsulta(final List<Consulta> consultas) {
+	public ViewVisualizarConsultasMedico(final List<Consulta> consultas) {
 		setBounds(100, 100, 450, 433);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,6 +67,7 @@ public class ViewVisualizarConsulta extends JDialog {
 				JButton sairButton = new JButton("sair");
 				sairButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dispose();
 					}
 				});
 				sairButton.setActionCommand("OK");
@@ -77,7 +79,11 @@ public class ViewVisualizarConsulta extends JDialog {
 			btnObservacoes.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					
+					ViewOptionAdicaoOuVisualizacaoObservacao opcaoObservacao = new ViewOptionAdicaoOuVisualizacaoObservacao();
+					int opt = opcaoObservacao.getOpcao();
+					if(!(opt == -1)){
+						System.out.println("djsojdosjdjsodjs");
+					}
 				}
 			});
 			

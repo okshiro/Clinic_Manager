@@ -14,7 +14,9 @@ public class Consulta  implements Serializable{
 	private LocalTime hora;
 	
 	private Paciente paciente;
-	private Medico medico;	
+	private Medico medico;
+	
+	private Observacao observacao;
 	
 	public Consulta(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico) {
 		setId(id);
@@ -52,6 +54,10 @@ public class Consulta  implements Serializable{
 		return id;
 	}
 	
+	public Observacao getObservacao() {
+		return observacao;
+	}
+	
 	//SETS
 	
 	public void setDuracao(int duracao) {
@@ -78,11 +84,19 @@ public class Consulta  implements Serializable{
 		this.id = id;
 	}
 	
+	public void setObservacao(Observacao observacao) {
+		this.observacao = observacao;
+	}
+	
 	//SOBRESCRITAS
 	@Override
 	public String toString() {
 		return this.id + " : " + paciente.toString();
 	}
+
+	
+
+	
 	
 	
 }

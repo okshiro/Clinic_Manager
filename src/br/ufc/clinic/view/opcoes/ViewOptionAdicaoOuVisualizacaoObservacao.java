@@ -10,19 +10,20 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
-public class ViewEscolherConsulta extends JDialog {
+public class ViewOptionAdicaoOuVisualizacaoObservacao extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private int tipoConsulta;
+	private int opcao;
+	
+	
 	public static void main(String[] args) {
 		try {
-			ViewEscolherConsulta dialog = new ViewEscolherConsulta();
+			ViewOptionAdicaoOuVisualizacaoObservacao dialog = new ViewOptionAdicaoOuVisualizacaoObservacao();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,31 +34,26 @@ public class ViewEscolherConsulta extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewEscolherConsulta() {
-		this.tipoConsulta = -1;
-		setBounds(100, 100, 438, 247);
+	public ViewOptionAdicaoOuVisualizacaoObservacao() {
+		opcao = -1;
+		setBounds(100, 100, 450, 250);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblEscolhaUmaOpo = new JLabel("Escolha uma Opção!");
-		lblEscolhaUmaOpo.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblEscolhaUmaOpo.setBounds(87, 24, 257, 28);
-		contentPanel.add(lblEscolhaUmaOpo);
+		JLabel lblEscolhaUmaOpco = new JLabel("Escolha uma opcão:");
+		lblEscolhaUmaOpco.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEscolhaUmaOpco.setBounds(140, 41, 192, 15);
+		contentPanel.add(lblEscolhaUmaOpco);
 		
-		final JRadioButton cParticular = new JRadioButton("Consulta Particular");
-		cParticular.setBounds(46, 77, 169, 23);
-		contentPanel.add(cParticular);
+		final JRadioButton rdbtnVisualizarObservao = new JRadioButton("Visualizar Observação");
+		rdbtnVisualizarObservao.setBounds(22, 73, 204, 23);
+		contentPanel.add(rdbtnVisualizarObservao);
 		
-		final JRadioButton cPlano = new JRadioButton("Consulta Por Plano");
-		cPlano.setBounds(219, 77, 211, 23);
-		contentPanel.add(cPlano);
-		
-		ButtonGroup group = new ButtonGroup();
-		group.add(cParticular);
-		group.add(cPlano);
-		
+		final JRadioButton rdbtnAdicionarObservao = new JRadioButton("Adicionar Observação");
+		rdbtnAdicionarObservao.setBounds(230, 73, 181, 23);
+		contentPanel.add(rdbtnAdicionarObservao);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -67,41 +63,43 @@ public class ViewEscolherConsulta extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent e) {
-						if(cParticular.isSelected() || cPlano.isSelected() ){
-							if(cParticular.isSelected()){
-								tipoConsulta = 1;
-								dispose();
-							}else{
-								tipoConsulta = 2;
-								dispose();
-							}
-						}else{
-							JOptionPane.showMessageDialog(null, "Marque uma das Opções!!!");
+						if(rdbtnAdicionarObservao.isSelected()){
+							opcao = 1;
+							dispose();
+						}else if(rdbtnVisualizarObservao.isSelected()){
+								opcao=2;
 						}
+						dispose();
 					}
 				});
-				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
-			setModal(true);
-			setVisible(true);
 		}
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnAdicionarObservao);
+		group.add(rdbtnVisualizarObservao);
+		
 	}
 
-	public int getTipoConsulta() {
-		return tipoConsulta;
+	/**
+	 * @return the opcao
+	 */
+	public int getOpcao() {
+		return opcao;
+	}
+
+	/**
+	 * @param opcao the opcao to set
+	 */
+	public void setOpcao(int opcao) {
+		this.opcao = opcao;
 	}
 }
