@@ -5,20 +5,26 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufc.clinic.repository.GenericRepository;
-
+import br.ufc.clinic.repository.RepositoryManage;
 public class Atendente extends Funcionario {
 
 	private static final long serialVersionUID = 1L;
+	private RepositoryManage<Object> repositorio;
 
 	//CONSTRUCT
 	
 	public Atendente(String nome) {
 		super(nome);
+		repositorio = new RepositoryManage<Object>();
+		repositorio.createRepositoryALL();
+		repositorio.loadRepositoryALL();
+		repositorio.pullRepositoryALL();
+		System.out.println("Drogaasadasdasd");
 	}
 
 	public Atendente(String nome, Conta conta) {
-		super(nome, conta);
+		this(nome);
+		setConta(conta);
 	}
 	
 	
@@ -27,16 +33,7 @@ public class Atendente extends Funcionario {
 		p.addEndereco(endereco);
 		p.addTelefone(telefone);
 		
-		GenericRepository<Paciente> paciente = new GenericRepository<Paciente>("paciente");
-		if(paciente.exist()){
-			paciente.load();
-		}else{
-			paciente.create();
-			paciente.load();
-		}
-		paciente.pull();
-		paciente.add(p);
-		paciente.push();
+		repositorio.getPaciente().add(p);
 	}
 	
 	
@@ -48,33 +45,19 @@ public class Atendente extends Funcionario {
 		if(telefone != null){
 			m.addTelefone(telefone);
 		}
-		
-		
 		m.addEspecialidades(especialidade);
 		
 		for (DiaSemana d : dias) {
 			m.addDiasTrabalha(d);
 		}
 		
-		GenericRepository<Medico> medico = new GenericRepository<Medico>("medico");
-		if(medico.exist()){
-			medico.load();
-		}else{
-			medico.create();
-			medico.load();
-		}
-		medico.pull();
-		medico.add(m);
-		medico.push();
+		repositorio.getMedico().add(m);
+		
 	}
 	
 	public void cadastrarGerente(String nome, Conta c){
 		Gerente g = new Gerente(nome, c);
-		GenericRepository<Gerente> gerente = new GenericRepository<Gerente>("gerente");
-		gerente.create();
-		gerente.load();
-		gerente.pull();
-		gerente.add(g);
+		repositorio.getGerentes().add(g);
 	}
 	
 	public void cadastrarPlanoDeSaude(String razaoSocial,long cnpj, Endereco enderecos, Telefone telefones ){
@@ -82,51 +65,28 @@ public class Atendente extends Funcionario {
 		plano.addEndereco(enderecos);
 		plano.addTelefone(telefones);
 		
-		GenericRepository<PlanoSaude> p = new GenericRepository<PlanoSaude>("plano_saude");
-		p.create();
-		p.load();
-		p.pull();
-		p.add(plano);		
+		repositorio.getPlano_saude().add(plano);
 	}
 	
 	public void cadastrarConsultaParticular(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico, double preco){
 		ConsultaParticular c = new ConsultaParticular(id, duracao, dia, hora, paciente, medico, preco);
-		GenericRepository<ConsultaParticular> consulta = new GenericRepository<ConsultaParticular>("consulta_particular");
-		consulta.create();
-		consulta.pull();
-		consulta.add(c);
-		consulta.push();
+		repositorio.getConsulta_particular().add(c);
 	}
 	public void cadastrarConsultaPorPlano(int id, int duracao, LocalDate dia, LocalTime hora, Paciente paciente, Medico medico,PlanoSaude p){
 		ConsultaPorPlano c = new ConsultaPorPlano(id, duracao, dia, hora, paciente, medico);
 		c.setPlanoSaude(p);
 		
-		GenericRepository<ConsultaPorPlano> consulta = new GenericRepository<ConsultaPorPlano>("consulta_plano");
-		consulta.create();
-		consulta.load();
-		consulta.pull();
-		consulta.add(c);
-		consulta.push();
+		repositorio.getConsulta_plano().add(c);
 	}
 	
 	public void cadastraEspecialidade(int id, String nome){
-		GenericRepository<Especialidade> especialidades = new GenericRepository<Especialidade>("especialidade");
-		especialidades.create();
-		especialidades.load();
-		especialidades.pull();
-		especialidades.add(new Especialidade(id, nome));
-		especialidades.push();
+		repositorio.getEspecialidade().add(new Especialidade(id, nome));
 	}
 	
 	
 	public List<Medico> horariosLivres(DiaSemana dia){
-		GenericRepository<Medico> repMedicos = new GenericRepository<Medico>("medico");
-		repMedicos.create();
-		repMedicos.load();
-		repMedicos.pull();
 		
-		java.util.List<Medico> modalMedicos = new ArrayList<Medico>();
-		modalMedicos.addAll(repMedicos.get());
+		java.util.List<Medico> modalMedicos = repositorio.getMedico().get();
 		
 		for(int i=0; i< modalMedicos.size(); i++){
 			if(modalMedicos.get(i).getDiasTrabalha().contains(dia)){
@@ -136,17 +96,35 @@ public class Atendente extends Funcionario {
 		return modalMedicos;
 	}
 	
+	
 	public Medico getMedico(Medico m){
-		GenericRepository<Medico> repMedicos = new GenericRepository<Medico>("medico");
-		repMedicos.create();
-		repMedicos.load();
-		repMedicos.pull();
-		for(Medico medico : repMedicos.get()){
+		for(Medico medico : repositorio.getMedico().get()){
 			if(medico.equals(m)){
 				return medico;
 			}
 		}
 		return null;
 	}
+	
+	public List<Medico> getMedicoEspecialidade(Especialidade e){
+		List<Medico> medicos = new ArrayList<Medico>();
+		for(Medico medico : repositorio.getMedico().get()){
+			if(medico.getEspecialidades().equals(e)){
+				medicos.add(medico);
+			}
+		}
+		return medicos;
+	}
+	
+	public List<Medico> getMedicoEspecialidadeDia(Especialidade e, DiaSemana dia){
+		List<Medico> medicosEsp = getMedicoEspecialidade(e);
+		for(int i = 0; i<medicosEsp.size() ; i++){
+			if(!(medicosEsp.get(i).getDiasTrabalha().contains(dia))){
+				medicosEsp.remove(medicosEsp.get(i));
+			}
+		}
+		return medicosEsp;
+	}
 
 }
+

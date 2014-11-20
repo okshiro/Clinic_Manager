@@ -33,9 +33,6 @@ public class ViewVisualizarHorariosLivres extends JDialog {
 		}
 	}
 
-	/**
-	 * Create the dialog.
-	 */
 	public ViewVisualizarHorariosLivres(final Atendente atendente, DiaSemana dia) {
 		setBounds(100, 100, 499, 440);
 		getContentPane().setLayout(new BorderLayout());

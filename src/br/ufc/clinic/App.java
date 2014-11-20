@@ -28,13 +28,13 @@ public class App {
 		if(usuario != null){
 			if(usuario instanceof Atendente){
 				@SuppressWarnings("unused")
-				ViewAtendente window = new ViewAtendente((Atendente) usuario);
+				ViewAtendente window = new ViewAtendente(new Atendente(usuario.getNome(), usuario.getConta()));
 			}else if(usuario instanceof Medico){
 				@SuppressWarnings("unused")
-				ViewMedico window = new ViewMedico((Medico) usuario);
+				ViewMedico window = new ViewMedico(new Medico(usuario.getNome(), usuario.getConta()));
 			}else if(usuario instanceof Gerente){
 				@SuppressWarnings("unused")
-				ViewGerente window = new ViewGerente((Gerente) usuario);
+				ViewGerente window = new ViewGerente(new Gerente(usuario.getNome(), usuario.getConta()));
 			}
 		}
 		

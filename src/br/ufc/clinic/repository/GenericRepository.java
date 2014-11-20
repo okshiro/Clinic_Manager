@@ -98,11 +98,21 @@ public class GenericRepository<T> {
 	};
 
 	public void add(T entity){
+		if(this.exist() == false){
+			this.create();
+			this.load();
+			this.pull();
+		}
 		this.entity.add(entity);
 		this.push();
 	};
 
 	public void rem(T entity){
+		if(this.exist() == false){
+			this.create();
+			this.load();
+			this.pull();
+		}
 		this.entity.remove(entity);
 		this.push();
 	};
@@ -118,6 +128,11 @@ public class GenericRepository<T> {
 	}
 
 	public List<T> get(){
+		if(this.exist() == false){
+			this.create();
+			this.load();
+			this.pull();
+		}
 		this.pull();
 		return this.entity;
 	}	
