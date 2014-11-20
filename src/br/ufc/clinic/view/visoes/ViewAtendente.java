@@ -24,10 +24,12 @@ import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
 import br.ufc.clinic.view.opcoes.ViewOptionConsulta;
+import br.ufc.clinic.view.opcoes.ViewOptionEscolherDia;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaParticular;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaPorPlano;
 import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
 import br.ufc.clinic.view.visualizar.ViewVisualizarGerente;
+import br.ufc.clinic.view.visualizar.ViewVisualizarHorariosLivres;
 import br.ufc.clinic.view.visualizar.ViewVisualizarMedico;
 import br.ufc.clinic.view.visualizar.ViewVisualizarPaciente;
 import br.ufc.clinic.view.visualizar.ViewVisualizarPlanosSaude;
@@ -243,6 +245,17 @@ public class ViewAtendente extends JDialog {
 		menuBar.add(Relatorios);
 		
 		JMenuItem HorariosLivresMdicos = new JMenuItem("Horários Livres Médicos ");
+		HorariosLivresMdicos.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				ViewOptionEscolherDia escolherDia = new ViewOptionEscolherDia();
+				if(escolherDia.getDia() != null){
+					@SuppressWarnings("unused")
+					ViewVisualizarHorariosLivres horariosLivres = new ViewVisualizarHorariosLivres(atendente, escolherDia.getDia());
+				}
+			}
+		});
+		
 		Relatorios.add(HorariosLivresMdicos);
 		
 		JMenuItem ConsultarMdico = new JMenuItem("Consultar Médico");

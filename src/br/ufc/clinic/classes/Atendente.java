@@ -2,6 +2,7 @@ package br.ufc.clinic.classes;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.clinic.repository.GenericRepository;
@@ -117,5 +118,36 @@ public class Atendente extends Funcionario {
 		especialidades.push();
 	}
 	
+	
+	public List<Medico> horariosLivres(DiaSemana dia){
+		GenericRepository<Medico> repMedicos = new GenericRepository<Medico>("medico");
+		repMedicos.create();
+		repMedicos.load();
+		repMedicos.pull();
+		
+		
+		java.util.List<Medico> modalMedicos = new ArrayList<Medico>();
+		modalMedicos.addAll(repMedicos.get());
+		
+		for(int i=0; i< modalMedicos.size(); i++){
+			if(modalMedicos.get(i).getDiasTrabalha().contains(dia)){
+				modalMedicos.remove(i);
+			}
+		}
+		return modalMedicos;
+	}
+	
+	public Medico getMedico(Medico m){
+		GenericRepository<Medico> repMedicos = new GenericRepository<Medico>("medico");
+		repMedicos.create();
+		repMedicos.load();
+		repMedicos.pull();
+		for(Medico medico : repMedicos.get()){
+			if(medico.equals(m)){
+				return medico;
+			}
+		}
+		return null;
+	}
 
 }

@@ -276,7 +276,7 @@ public class ViewCadastroMedico extends JDialog {
 						
 						List<DiaSemana> dias = new ArrayList<DiaSemana>();
 						for (JCheckBox j : listaDias) {
-							if(j.isEnabled()){
+							if(j.isSelected()){
 								dias.add(Ferramentas.StringToDiaSemana(j.getText()));
 							}
 						}
