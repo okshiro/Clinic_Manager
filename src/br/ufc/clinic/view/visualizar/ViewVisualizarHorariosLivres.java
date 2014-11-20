@@ -87,7 +87,7 @@ public class ViewVisualizarHorariosLivres extends JDialog {
 						String nome = select.substring(0, index);
 						long crm = Long.parseLong(select.substring(index+1, select.length()));
 						@SuppressWarnings("unused")
-						ViewMedico verMedico = new ViewMedico(atendente.getMedico(new Medico(nome, crm)));
+						ViewMedico verMedico = new ViewMedico(atendente.getMedicoOriginal(new Medico(nome, crm)));
 					}
 				});
 				visualizarButton.setActionCommand("Cancel");

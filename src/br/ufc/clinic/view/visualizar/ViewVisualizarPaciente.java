@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Paciente;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarPaciente extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class ViewVisualizarPaciente extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarPaciente dialog = new ViewVisualizarPaciente();
+			ViewVisualizarPaciente dialog = new ViewVisualizarPaciente(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class ViewVisualizarPaciente extends JDialog {
 		}
 	}
 
-	public ViewVisualizarPaciente() {
+	public ViewVisualizarPaciente(final Atendente atendente) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,11 +45,7 @@ public class ViewVisualizarPaciente extends JDialog {
 		
 		final List listPacientes = new List();
 		
-		final GenericRepository<Paciente> pacientes = new GenericRepository<Paciente>("paciente");
-		pacientes.create();
-		pacientes.load();
-		pacientes.pull();
-		for (Paciente p : pacientes.get()) {
+		for (Paciente p : atendente.getListaPaciente()) {
 			listPacientes.add(p.toString());
 		}
 		
@@ -93,7 +89,7 @@ public class ViewVisualizarPaciente extends JDialog {
 						String nome = select.substring(0, index);
 						long cpf = Long.parseLong(select.substring(index+1, select.length()));
 						listPacientes.remove(listPacientes.getSelectedIndex());
-						pacientes.rem(new Paciente(nome, cpf));
+						atendente.removerParciente(new Paciente(nome, cpf));
 						JOptionPane.showMessageDialog(null, "Paciente Removido com Sucesso!!!");
 					}
 				});
@@ -117,7 +113,7 @@ public class ViewVisualizarPaciente extends JDialog {
 						long cpf = Long.parseLong(select.substring(index+1, select.length()));
 						
 						Paciente p = new Paciente(nome, cpf);
-						for (Paciente pac  : pacientes.get()) {
+						for (Paciente pac  : atendente.getListaPaciente()) {
 							if(p.equals(pac)){
 								System.out.println("Rolou");
 								@SuppressWarnings("unused")

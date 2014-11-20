@@ -2,21 +2,20 @@ package br.ufc.clinic.view.visualizar;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.ConsultaParticular;
-import br.ufc.clinic.repository.GenericRepository;
-
-import java.awt.Font;
-import java.awt.List;
 
 public class ViewVisualizarConsultaParticular extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +23,7 @@ public class ViewVisualizarConsultaParticular extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarConsultaParticular dialog = new ViewVisualizarConsultaParticular();
+			ViewVisualizarConsultaParticular dialog = new ViewVisualizarConsultaParticular(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -35,7 +34,7 @@ public class ViewVisualizarConsultaParticular extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewVisualizarConsultaParticular() {
+	public ViewVisualizarConsultaParticular(final Atendente atendente) {
 		setBounds(100, 100, 402, 394);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,12 +47,9 @@ public class ViewVisualizarConsultaParticular extends JDialog {
 			contentPanel.add(lblConsultas);
 		}
 			
-			final GenericRepository<ConsultaParticular> cparticular = new GenericRepository<ConsultaParticular>("consulta_particular");
-			cparticular.create();
-			cparticular.pull();
 			
 			final List consultas = new List();
-			for(ConsultaParticular p : cparticular.get()){
+			for(ConsultaParticular p : atendente.getListaConsultasParticular()){
 				consultas.add(p.toString());
 			}
 			
@@ -96,7 +92,7 @@ public class ViewVisualizarConsultaParticular extends JDialog {
 							e2.printStackTrace();
 							return;
 						}
-						for(ConsultaParticular p : cparticular.get()){
+						for(ConsultaParticular p : atendente.getListaConsultasParticular()){
 							if(p.getId() == id){
 								@SuppressWarnings("unused")
 								ViewConsultaParticular consPart = new ViewConsultaParticular(p);
@@ -128,9 +124,9 @@ public class ViewVisualizarConsultaParticular extends JDialog {
 							e2.printStackTrace();
 							return;
 						}
-						for(ConsultaParticular p : cparticular.get()){
+						for(ConsultaParticular p : atendente.getListaConsultasParticular()){
 							if(p.getId() == id){
-								cparticular.rem(p);
+								atendente.removerConsultaPartiular(p);
 								consultas.remove(consultas.getSelectedIndex());
 								JOptionPane.showMessageDialog(null, "Consulta Removida com Sucesso!!!");
 								return;

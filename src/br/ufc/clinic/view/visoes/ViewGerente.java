@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Gerente;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultasDia;
 
@@ -71,7 +72,7 @@ public class ViewGerente extends JDialog {
 						
 						public void actionPerformed(ActionEvent e) {
 							@SuppressWarnings("unused")
-							ViewVisualizarConsultasDia viewConsultas = new ViewVisualizarConsultasDia(LocalDate.now());
+							ViewVisualizarConsultasDia viewConsultas = new ViewVisualizarConsultasDia(new Atendente("Default"),LocalDate.now());
 						}
 					});
 					mnConsultas.add(mntmVisualizarConsultas);

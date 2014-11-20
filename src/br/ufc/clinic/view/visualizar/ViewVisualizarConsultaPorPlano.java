@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.ConsultaPorPlano;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarConsultaPorPlano extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class ViewVisualizarConsultaPorPlano extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarConsultaPorPlano dialog = new ViewVisualizarConsultaPorPlano();
+			ViewVisualizarConsultaPorPlano dialog = new ViewVisualizarConsultaPorPlano(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -34,7 +34,7 @@ public class ViewVisualizarConsultaPorPlano extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewVisualizarConsultaPorPlano() {
+	public ViewVisualizarConsultaPorPlano(final Atendente atendente) {
 		setBounds(100, 100, 402, 394);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,12 +47,8 @@ public class ViewVisualizarConsultaPorPlano extends JDialog {
 			contentPanel.add(lblConsultas);
 		}
 			
-			final GenericRepository<ConsultaPorPlano> cplano = new GenericRepository<ConsultaPorPlano>("consulta_plano");
-			cplano.create();
-			cplano.pull();
-			
 			final List consultas = new List();
-			for(ConsultaPorPlano p : cplano.get()){
+			for(ConsultaPorPlano p : atendente.getListaConsultasPorPlano()){
 				consultas.add(p.toString());
 			}
 			
@@ -95,7 +91,7 @@ public class ViewVisualizarConsultaPorPlano extends JDialog {
 							e2.printStackTrace();
 							return;
 						}
-						for(ConsultaPorPlano p : cplano.get()){
+						for(ConsultaPorPlano p : atendente.getListaConsultasPorPlano()){
 							if(p.getId() == id){
 								@SuppressWarnings("unused")
 								ViewConsultaPorPlano consPlano = new ViewConsultaPorPlano(p);
@@ -127,9 +123,9 @@ public class ViewVisualizarConsultaPorPlano extends JDialog {
 							e2.printStackTrace();
 							return;
 						}
-						for(ConsultaPorPlano p : cplano.get()){
+						for(ConsultaPorPlano p : atendente.getListaConsultasPorPlano()){
 							if(p.getId() == id){
-								cplano.rem(p);
+								atendente.removerConsultasPorPlano(p);
 								consultas.remove(consultas.getSelectedIndex());
 								JOptionPane.showMessageDialog(null, "Consulta Removida com Sucesso!!!");
 								return;

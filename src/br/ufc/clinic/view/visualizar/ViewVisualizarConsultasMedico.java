@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import br.ufc.clinic.classes.Consulta;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
+import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.view.cadastros.ViewCadastrarObservacao;
 import br.ufc.clinic.view.opcoes.ViewOptionAdicaoOuVisualizacaoObservacao;
 
@@ -27,7 +28,7 @@ public class ViewVisualizarConsultasMedico extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarConsultasMedico dialog = new ViewVisualizarConsultasMedico(null);
+			ViewVisualizarConsultasMedico dialog = new ViewVisualizarConsultasMedico(null, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,7 +38,7 @@ public class ViewVisualizarConsultasMedico extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewVisualizarConsultasMedico(final List<Consulta> consultas) {
+	public ViewVisualizarConsultasMedico(final Medico medico, final List<Consulta> consultas) {
 		setBounds(100, 100, 450, 433);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,7 +111,7 @@ public class ViewVisualizarConsultasMedico extends JDialog {
 					if(!(opt == -1)){
 						if(opt == 1){
 							@SuppressWarnings("unused")
-							ViewCadastrarObservacao cadastrarObservacao  = new ViewCadastrarObservacao(con);
+							ViewCadastrarObservacao cadastrarObservacao  = new ViewCadastrarObservacao(medico,con);
 						}else if(opt == 2){
 							@SuppressWarnings("unused")
 							ViewObservacaoConsulta observacao = new ViewObservacaoConsulta(con);

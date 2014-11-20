@@ -15,12 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Consulta;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
+import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.classes.Observacao;
 import br.ufc.clinic.classes.TipoObservacao;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewCadastrarObservacao extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +30,7 @@ public class ViewCadastrarObservacao extends JDialog {
 	
 	public static void main(String[] args) {
 		try {
-			ViewCadastrarObservacao dialog = new ViewCadastrarObservacao(null);
+			ViewCadastrarObservacao dialog = new ViewCadastrarObservacao(null, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,7 +38,7 @@ public class ViewCadastrarObservacao extends JDialog {
 	}
 
 	
-	public ViewCadastrarObservacao(final Consulta consulta) {
+	public ViewCadastrarObservacao(Medico medico, final Consulta consulta) {
 		setBounds(100, 100, 450, 448);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,21 +103,15 @@ public class ViewCadastrarObservacao extends JDialog {
 						}
 						if(adicionada){
 							JOptionPane.showMessageDialog(null, "Observação Adicionada Com Sucesso!!!");
+							Atendente a = new Atendente("Default");
 							if(consulta  instanceof ConsultaPorPlano){
-								GenericRepository<ConsultaPorPlano> repConsulta = new GenericRepository<ConsultaPorPlano>("consulta_plano");
-								repConsulta.create();
-								repConsulta.load();
-								repConsulta.pull();
-								repConsulta.rem((ConsultaPorPlano) consulta);
-								repConsulta.add((ConsultaPorPlano) consulta);
+								
+								a.removerConsultasPorPlano((ConsultaPorPlano) consulta);
+								a.adicionarConsultasPorPlano((ConsultaPorPlano) consulta);
 								dispose();
 							}else{
-								GenericRepository<ConsultaParticular> repConsulta = new GenericRepository<ConsultaParticular>("consulta_particular");
-								repConsulta.create();
-								repConsulta.load();
-								repConsulta.pull();
-								repConsulta.rem((ConsultaParticular) consulta);
-								repConsulta.add((ConsultaParticular) consulta);
+								a.removerConsultaPartiular((ConsultaParticular) consulta);
+								a.adicionarConsultaPartiular((ConsultaParticular) consulta);
 								dispose();
 							}
 							

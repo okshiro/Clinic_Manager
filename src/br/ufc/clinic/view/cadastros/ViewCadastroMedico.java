@@ -26,7 +26,6 @@ import br.ufc.clinic.classes.Endereco;
 import br.ufc.clinic.classes.Especialidade;
 import br.ufc.clinic.classes.Telefone;
 import br.ufc.clinic.ferramentas.Ferramentas;
-import br.ufc.clinic.repository.GenericRepository;
 import br.ufc.clinic.view.components.JTextFieldNumbers;
 
 public class ViewCadastroMedico extends JDialog {
@@ -226,17 +225,8 @@ public class ViewCadastroMedico extends JDialog {
 			panelDias.setBounds(8, 313, 100, 222);
 			contentPanel.add(panelDias);
 			
-			
-			GenericRepository<Especialidade> especialidades = new GenericRepository<Especialidade>("especialidade");
-			if(!especialidades.exist()){
-				especialidades.create();
-			}
-			especialidades.load();
-			especialidades.pull();
-			
-			
 			final java.awt.List listEsp = new java.awt.List();
-			for (Especialidade e : especialidades.get()) {
+			for (Especialidade e : atendente.getListaEspecialidade()) {
 				listEsp.add(e.toString());
 			}
 			

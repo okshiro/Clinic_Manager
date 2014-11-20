@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Gerente;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarGerente extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class ViewVisualizarGerente extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarGerente dialog = new ViewVisualizarGerente();
+			ViewVisualizarGerente dialog = new ViewVisualizarGerente(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class ViewVisualizarGerente extends JDialog {
 		}
 	}
 
-	public ViewVisualizarGerente() {
+	public ViewVisualizarGerente(final Atendente atendente) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,12 +44,8 @@ public class ViewVisualizarGerente extends JDialog {
 			contentPanel.add(lblGerentes);
 		}
 			
-			final GenericRepository<Gerente> gerentes = new GenericRepository<Gerente>("gerente");
-			gerentes.create();
-			gerentes.load();
-			gerentes.pull();
 			final List listGerentes = new List();
-			for(Gerente g : gerentes.get()){
+			for(Gerente g : atendente.getListaGerente()){
 				listGerentes.add(g.toString());
 			}
 			
@@ -84,7 +80,7 @@ public class ViewVisualizarGerente extends JDialog {
 								return;
 							}
 							listGerentes.remove(listGerentes.getSelectedIndex());
-							gerentes.rem(new Gerente(nome));
+							atendente.removerGerente(new Gerente(nome));
 							JOptionPane.showMessageDialog(null, "Gerente Removido com Sucesso!!!");
 						}
 					});

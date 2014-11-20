@@ -23,7 +23,6 @@ import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.classes.Paciente;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewCadastraConsultaParticular extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -106,13 +105,9 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		contentPanel.add(lblPaciente);
 		
 		
-		GenericRepository<Paciente> pacientesRepository = new GenericRepository<Paciente>("paciente");
-		pacientesRepository.create();
-		pacientesRepository.load();
-		pacientesRepository.pull();
 		final List pacientes = new List();
 		
-		for(Paciente p : pacientesRepository.get()){
+		for(Paciente p : atendente.getListaPaciente()){
 			pacientes.add(p.toString());
 		}
 		
@@ -123,15 +118,8 @@ public class ViewCadastraConsultaParticular extends JDialog {
 		lblMedico.setBounds(479, 75, 70, 15);
 		contentPanel.add(lblMedico);
 		
-		
-		GenericRepository<Medico> medicosRepository = new GenericRepository<Medico>("medico");
-		medicosRepository.create();
-		medicosRepository.load();
-		medicosRepository.pull();
-		
-		
 		final List medicos = new List();
-		for(Medico m : medicosRepository.get()){
+		for(Medico m : atendente.getListaMedico()){
 			medicos.add(m.toString());
 		}
 		
@@ -153,10 +141,7 @@ public class ViewCadastraConsultaParticular extends JDialog {
 							JOptionPane.showMessageDialog(null, "Digite uma Identificação Valida!!!");
 							return;
 						}
-						GenericRepository<ConsultaParticular> consulta = new GenericRepository<ConsultaParticular>("consulta_particular");
-						consulta.create();
-						consulta.pull();
-						for(ConsultaParticular p: consulta.get()){
+						for(ConsultaParticular p: atendente.getListaConsultasParticular()){
 							if(p.getId() == ident){
 								JOptionPane.showMessageDialog(null, "Identificação já existe!!!");
 								return;

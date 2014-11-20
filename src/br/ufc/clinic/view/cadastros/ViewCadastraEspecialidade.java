@@ -12,13 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Especialidade;
-import br.ufc.clinic.repository.GenericRepository;
-
-import javax.swing.JTextField;
 
 public class ViewCadastraEspecialidade extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -91,11 +89,7 @@ public class ViewCadastraEspecialidade extends JDialog {
 							System.out.println("Digite um nome!!!");
 							return;
 						}
-						GenericRepository<Especialidade> especialidades = new GenericRepository<Especialidade>("especialidade");
-						especialidades.create();
-						especialidades.load();
-						especialidades.pull();
-						for(Especialidade e1 : especialidades.get()){
+						for(Especialidade e1 : atendente.getListaEspecialidade()){
 							if(id == e1.getCodigo()){
 								JOptionPane.showMessageDialog(null, "Impossivel Adicionar Especialidade com mesmo Identificador!!!");
 								return;

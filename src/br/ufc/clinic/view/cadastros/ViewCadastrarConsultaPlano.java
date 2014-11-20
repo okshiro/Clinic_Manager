@@ -23,7 +23,6 @@ import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Medico;
 import br.ufc.clinic.classes.Paciente;
 import br.ufc.clinic.classes.PlanoSaude;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewCadastrarConsultaPlano extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -101,13 +100,9 @@ public class ViewCadastrarConsultaPlano extends JDialog {
 		contentPanel.add(lblPaciente);
 		
 		
-		GenericRepository<Paciente> pacientesRepository = new GenericRepository<Paciente>("paciente");
-		pacientesRepository.create();
-		pacientesRepository.load();
-		pacientesRepository.pull();
 		final List pacientes = new List();
 		
-		for(Paciente p : pacientesRepository.get()){
+		for(Paciente p : atendente.getListaPaciente()){
 			pacientes.add(p.toString());
 		}
 		
@@ -119,14 +114,8 @@ public class ViewCadastrarConsultaPlano extends JDialog {
 		contentPanel.add(lblMedico);
 		
 		
-		GenericRepository<Medico> medicosRepository = new GenericRepository<Medico>("medico");
-		medicosRepository.create();
-		medicosRepository.load();
-		medicosRepository.pull();
-		
-		
 		final List medicos = new List();
-		for(Medico m : medicosRepository.get()){
+		for(Medico m : atendente.getListaMedico()){
 			medicos.add(m.toString());
 		}
 		
@@ -137,13 +126,8 @@ public class ViewCadastrarConsultaPlano extends JDialog {
 		lblPlanoDeSade.setBounds(646, 75, 114, 15);
 		contentPanel.add(lblPlanoDeSade);
 		
-		GenericRepository<PlanoSaude> planosRepository = new GenericRepository<PlanoSaude>("plano_saude");
-		planosRepository.create();
-		planosRepository.load();
-		planosRepository.pull();
-		
 		final List planos = new List();
-		for(PlanoSaude p : planosRepository.get()){
+		for(PlanoSaude p : atendente.getListaPlanoSaude()){
 			planos.add(p.toString());
 		}
 		

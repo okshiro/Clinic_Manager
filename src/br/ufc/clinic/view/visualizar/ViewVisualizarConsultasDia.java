@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Consulta;
 import br.ufc.clinic.classes.ConsultaParticular;
 import br.ufc.clinic.classes.ConsultaPorPlano;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarConsultasDia extends JDialog {
 
@@ -28,7 +28,7 @@ public class ViewVisualizarConsultasDia extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarConsultasDia dialog = new ViewVisualizarConsultasDia(null);
+			ViewVisualizarConsultasDia dialog = new ViewVisualizarConsultasDia(null, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class ViewVisualizarConsultasDia extends JDialog {
 		}
 	}
 
-	public ViewVisualizarConsultasDia(LocalDate dia) {
+	public ViewVisualizarConsultasDia(Atendente atendente,LocalDate dia) {
 		setBounds(100, 100, 450, 365);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,21 +54,11 @@ public class ViewVisualizarConsultasDia extends JDialog {
 			contentPanel.add(lblDia);
 		}
 			
-			GenericRepository<ConsultaPorPlano> cplano = new GenericRepository<ConsultaPorPlano>("consulta_plano");
-			GenericRepository<ConsultaParticular> cparticular = new GenericRepository<ConsultaParticular>("consulta_particular");
-			cplano.create();
-			cplano.load();
-			cplano.pull();
-			
-			cparticular.create();
-			cparticular.load();
-			cparticular.pull();
-			
 			final java.util.List<Consulta> consultas = new ArrayList<Consulta>();
-			for(ConsultaParticular cp: cparticular.get()){
+			for(ConsultaParticular cp: atendente.getListaConsultasParticular()){
 				consultas.add(cp);
 			}
-			for(ConsultaPorPlano cp: cplano.get()){
+			for(ConsultaPorPlano cp: atendente.getListaConsultasPorPlano()){
 				consultas.add(cp);
 			}
 			

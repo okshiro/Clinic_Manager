@@ -14,15 +14,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Especialidade;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarEspecialidade extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarEspecialidade dialog = new ViewVisualizarEspecialidade();
+			ViewVisualizarEspecialidade dialog = new ViewVisualizarEspecialidade(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,7 +33,7 @@ public class ViewVisualizarEspecialidade extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ViewVisualizarEspecialidade() {
+	public ViewVisualizarEspecialidade(final Atendente atendente) {
 		setBounds(100, 100, 428, 342);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,12 +45,9 @@ public class ViewVisualizarEspecialidade extends JDialog {
 			lblEspecialidades.setBounds(124, 12, 178, 23);
 			contentPanel.add(lblEspecialidades);
 		}
-			
-			final GenericRepository<Especialidade> esp = new GenericRepository<Especialidade>("especialidade");
-			esp.create();
-			esp.pull();
+		
 			final List especialidades = new List();
-			for(Especialidade e : esp.get()){
+			for(Especialidade e : atendente.getListaEspecialidade()){
 				especialidades.add(e.toString());
 			}
 			
@@ -92,7 +89,7 @@ public class ViewVisualizarEspecialidade extends JDialog {
 						String nome = select.substring(index+1, select.length());
 						especialidades.remove(especialidades.getSelectedIndex());
 						System.out.println(id + " : " + nome);
-						esp.rem(new Especialidade(id, nome));
+						atendente.removerEspecialidade(new Especialidade(id, nome));
 						JOptionPane.showMessageDialog(null, "Especialidade Excluida com Sucesso!!!");
 						return;
 					}

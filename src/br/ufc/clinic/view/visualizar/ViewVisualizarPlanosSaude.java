@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.PlanoSaude;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarPlanosSaude extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarPlanosSaude dialog = new ViewVisualizarPlanosSaude();
+			ViewVisualizarPlanosSaude dialog = new ViewVisualizarPlanosSaude(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 		}
 	}
 
-	public ViewVisualizarPlanosSaude() {
+	public ViewVisualizarPlanosSaude(final Atendente atendente) {
 		setBounds(100, 100, 516, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -42,12 +42,8 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 			lblPlanosDeSade.setBounds(161, 12, 185, 22);
 			contentPanel.add(lblPlanosDeSade);
 			
-			final GenericRepository<PlanoSaude> planos = new GenericRepository<PlanoSaude>("plano_saude");
-			planos.create();
-			planos.load();
-			planos.pull();
 			final List listPlanos = new List();
-			for(PlanoSaude p : planos.get()){
+			for(PlanoSaude p : atendente.getListaPlanoSaude()){
 				listPlanos.add(p.toString());
 			}
 			
@@ -89,7 +85,7 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 							String razao = select.substring(0, index);
 							long cnpj = Long.parseLong(select.substring(index+1, select.length()));
 							listPlanos.remove(listPlanos.getSelectedIndex());
-							planos.rem(new PlanoSaude(razao, cnpj));
+							atendente.removerPlanoDeSaude(new PlanoSaude(razao, cnpj));
 							JOptionPane.showMessageDialog(null, "Plano de Saude Removido com Sucesso!!!");
 						}
 					});
@@ -113,7 +109,7 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 						String razaoSocial = select.substring(0, index);
 						long cnpj = Long.parseLong(select.substring(index+1, select.length()));
 						PlanoSaude p = new PlanoSaude(razaoSocial, cnpj);
-						for (PlanoSaude plan  : planos.get()) {
+						for (PlanoSaude plan  : atendente.getListaPlanoSaude()) {
 							if(plan.equals(p)){
 								@SuppressWarnings("unused")
 								ViewPlanoSaude viewPlano = new ViewPlanoSaude(plan);

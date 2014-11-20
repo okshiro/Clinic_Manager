@@ -149,7 +149,7 @@ public class ViewAtendente extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				ViewVisualizarPaciente viewPaciente = new ViewVisualizarPaciente();
+				ViewVisualizarPaciente viewPaciente = new ViewVisualizarPaciente(atendente);
 			}
 		});
 		
@@ -171,7 +171,7 @@ public class ViewAtendente extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				ViewVisualizarGerente viewGerente = new ViewVisualizarGerente();
+				ViewVisualizarGerente viewGerente = new ViewVisualizarGerente(atendente);
 			}
 		});
 		
@@ -182,7 +182,7 @@ public class ViewAtendente extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				ViewVisualizarPlanosSaude viewPlanoSaude = new ViewVisualizarPlanosSaude();
+				ViewVisualizarPlanosSaude viewPlanoSaude = new ViewVisualizarPlanosSaude(atendente);
 			}
 		});
 		
@@ -195,10 +195,10 @@ public class ViewAtendente extends JDialog {
 				ViewOptionConsulta escolha = new ViewOptionConsulta();
 				if(escolha.getTipoConsulta() == 1){
 					@SuppressWarnings("unused")
-					ViewVisualizarConsultaParticular viewConsultaParticular = new ViewVisualizarConsultaParticular();
+					ViewVisualizarConsultaParticular viewConsultaParticular = new ViewVisualizarConsultaParticular(atendente);
 				}else if(escolha.getTipoConsulta() == 2){
 					@SuppressWarnings("unused")
-					ViewVisualizarConsultaPorPlano viewConsultaPorPlano = new ViewVisualizarConsultaPorPlano();
+					ViewVisualizarConsultaPorPlano viewConsultaPorPlano = new ViewVisualizarConsultaPorPlano(atendente);
 				}else{
 					return;
 				}
@@ -212,7 +212,7 @@ public class ViewAtendente extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				ViewVisualizarEspecialidade viewEspecialidades = new ViewVisualizarEspecialidade();
+				ViewVisualizarEspecialidade viewEspecialidades = new ViewVisualizarEspecialidade(atendente);
 			}
 		});
 		

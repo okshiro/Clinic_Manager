@@ -109,7 +109,7 @@ public class ViewMedico extends JDialog {
 					}
 				}
 				@SuppressWarnings("unused")
-				ViewVisualizarConsultasMedico viewConsulta = new ViewVisualizarConsultasMedico(consultas);
+				ViewVisualizarConsultasMedico viewConsulta = new ViewVisualizarConsultasMedico(medico, consultas);
 				
 				
 			}
