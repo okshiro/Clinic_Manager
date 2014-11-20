@@ -125,7 +125,6 @@ public class Atendente extends Funcionario {
 		repMedicos.load();
 		repMedicos.pull();
 		
-		
 		java.util.List<Medico> modalMedicos = new ArrayList<Medico>();
 		modalMedicos.addAll(repMedicos.get());
 		
