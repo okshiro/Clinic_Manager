@@ -45,7 +45,9 @@ public class Especialidade implements Serializable{
 	
 	@Override
 	public boolean equals(Object obj) {
-		return this.getCodigo() == ((Especialidade)obj).getCodigo();
+		System.out.println(this.getCodigo() + " === " + ((Especialidade)obj).getCodigo() );
+		
+		return this.getNome().equals(((Especialidade)obj).getNome());
 	}
 	
 

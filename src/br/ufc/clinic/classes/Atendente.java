@@ -103,13 +103,15 @@ public class Atendente extends Funcionario {
 	
 	public List<Medico> getMedicoEspecialidade(Especialidade e){
 		List<Medico> medicos = new ArrayList<Medico>();
-		System.out.println("Entrou");
 		for(Medico m : repositorio.getMedico().get()){
-			System.out.println(m.getEspecialidades().size());
-			if(m.getEspecialidades().contains(e)){
-				medicos.add(m);
+			for(Especialidade esp : m.getEspecialidades()){
+				System.out.println(esp.toString());
+				if(esp.equals(e)){
+					medicos.add(m);
+				}
 			}
 		}
+		System.out.println("Mediso: " + medicos.size());
 		return medicos;
 	}
 	

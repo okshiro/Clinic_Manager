@@ -74,6 +74,7 @@ public class ViewConsultarMedicosEspecialidade extends JDialog {
 						int index = select.indexOf("-");
 						int id = Integer.parseInt(select.substring(0, index));
 						String nome = select.substring(index+1, select.length());
+						System.out.println("Ainda: " + id + " == " + nome);
 						java.util.List<Medico> listaMedicos = atendente.getMedicoEspecialidade(new Especialidade(id, nome));
 						@SuppressWarnings("unused")
 						ViewVisualizarMedico verMedicos = new ViewVisualizarMedico(atendente, listaMedicos);

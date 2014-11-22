@@ -271,7 +271,18 @@ public class ViewCadastroMedico extends JDialog {
 							}
 						}
 						
-						Especialidade esp = new Especialidade(0,listEsp.getSelectedItem());
+												
+						String select = listEsp.getSelectedItem();
+						if(select == null){
+							JOptionPane.showMessageDialog(null, "Selecione uma Especialidade!!!");
+							return;
+						}
+						
+						int index = select.indexOf("-");
+						int id = Integer.parseInt(select.substring(0, index));
+						String nome = select.substring(index+1, select.length());
+						
+						Especialidade esp = new Especialidade(id,nome);
 						
 						atendente.cadastrarMedico(textNome.getText(),Long.parseLong(textCrm.getText()), con, end, tel, esp, dias);
 						
