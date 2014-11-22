@@ -24,7 +24,9 @@ import br.ufc.clinic.view.cadastros.ViewCadastroGerente;
 import br.ufc.clinic.view.cadastros.ViewCadastroMedico;
 import br.ufc.clinic.view.cadastros.viewCadastrarPlanoSaude;
 import br.ufc.clinic.view.opcoes.ViewOptionConsulta;
+import br.ufc.clinic.view.opcoes.ViewOptionConsultarMedico;
 import br.ufc.clinic.view.opcoes.ViewOptionEscolherDia;
+import br.ufc.clinic.view.visualizar.ViewConsultarMedicosEspecialidade;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaParticular;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaPorPlano;
 import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
@@ -160,7 +162,7 @@ public class ViewAtendente extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				ViewVisualizarMedico viewMedico = new ViewVisualizarMedico();
+				ViewVisualizarMedico viewMedico = new ViewVisualizarMedico(atendente);
 			}
 		});
 		
@@ -259,6 +261,21 @@ public class ViewAtendente extends JDialog {
 		Relatorios.add(HorariosLivresMdicos);
 		
 		JMenuItem ConsultarMdico = new JMenuItem("Consultar Médico");
+		ConsultarMdico.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				ViewOptionConsultarMedico opcao = new ViewOptionConsultarMedico();
+				if(opcao.getOpcao() != -1){
+					if(opcao.getOpcao() == 1){
+						@SuppressWarnings("unused")
+						ViewConsultarMedicosEspecialidade medicosEspecialidade = new ViewConsultarMedicosEspecialidade(atendente);
+					}else if(opcao.getOpcao() == 2){
+						
+					}
+				}
+			}
+		});
+		
 		Relatorios.add(ConsultarMdico);
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);

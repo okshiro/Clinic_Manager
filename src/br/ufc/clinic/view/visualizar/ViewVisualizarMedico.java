@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import br.ufc.clinic.classes.Atendente;
 import br.ufc.clinic.classes.Medico;
-import br.ufc.clinic.repository.GenericRepository;
 
 public class ViewVisualizarMedico extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -23,17 +23,15 @@ public class ViewVisualizarMedico extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			ViewVisualizarMedico dialog = new ViewVisualizarMedico();
+			ViewVisualizarMedico dialog = new ViewVisualizarMedico(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Create the dialog.
-	 */
-	public ViewVisualizarMedico() {
+	
+	public ViewVisualizarMedico(Atendente atendente, final java.util.List<Medico> medicos){
 		setBounds(100, 100, 462, 424);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,12 +45,7 @@ public class ViewVisualizarMedico extends JDialog {
 		
 		final List listaMedicos = new List();
 		
-		final GenericRepository<Medico> medicos = new GenericRepository<Medico>("medico");
-		medicos.create();
-		medicos.load();
-		medicos.pull();
-		
-		for(Medico m : medicos.get()){
+		for(Medico m : medicos){
 			listaMedicos.add(m.toString());
 		}
 		
@@ -97,7 +90,7 @@ public class ViewVisualizarMedico extends JDialog {
 						String nome = select.substring(0, index);
 						long crm = Long.parseLong(select.substring(index+1, select.length()));
 						listaMedicos.remove(listaMedicos.getSelectedIndex());
-						medicos.rem(new Medico(nome, crm));
+						medicos.remove(new Medico(nome, crm));
 						JOptionPane.showMessageDialog(null, "Medico Removido com Sucesso!!!");
 					}
 				});
@@ -122,7 +115,7 @@ public class ViewVisualizarMedico extends JDialog {
 						long crm = Long.parseLong(select.substring(index+1, select.length()));
 						
 						Medico m = new Medico(nome, crm);
-						for (Medico med  : medicos.get()) {
+						for (Medico med  : medicos) {
 							if(m.equals(med)){
 								@SuppressWarnings("unused")
 								ViewMedico viewMedico = new ViewMedico(med);
@@ -138,5 +131,10 @@ public class ViewVisualizarMedico extends JDialog {
 		}
 		setModal(true);
 		setVisible(true);
+	}
+	
+	
+	public ViewVisualizarMedico(Atendente atendente) {
+		this(atendente, atendente.getListaMedico());
 	}
 }

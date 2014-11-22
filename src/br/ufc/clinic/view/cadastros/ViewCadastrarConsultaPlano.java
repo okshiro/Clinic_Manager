@@ -91,10 +91,6 @@ public class ViewCadastrarConsultaPlano extends JDialog {
 		contentPanel.add(hora);
 		hora.setColumns(10);
 		
-		JLabel lblPre = new JLabel("Preço");
-		lblPre.setBounds(26, 227, 70, 15);
-		contentPanel.add(lblPre);
-		
 		JLabel lblPaciente = new JLabel("Paciente");
 		lblPaciente.setBounds(298, 78, 70, 15);
 		contentPanel.add(lblPaciente);

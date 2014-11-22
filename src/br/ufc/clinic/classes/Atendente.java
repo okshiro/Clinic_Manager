@@ -103,9 +103,11 @@ public class Atendente extends Funcionario {
 	
 	public List<Medico> getMedicoEspecialidade(Especialidade e){
 		List<Medico> medicos = new ArrayList<Medico>();
-		for(Medico medico : repositorio.getMedico().get()){
-			if(medico.getEspecialidades().equals(e)){
-				medicos.add(medico);
+		System.out.println("Entrou");
+		for(Medico m : repositorio.getMedico().get()){
+			System.out.println(m.getEspecialidades().size());
+			if(m.getEspecialidades().contains(e)){
+				medicos.add(m);
 			}
 		}
 		return medicos;
@@ -232,6 +234,7 @@ public class Atendente extends Funcionario {
 		repositorio.getMedico().add(m);
 	}
 	
+	
 	//PLANOS DE SAUDE
 	public List<PlanoSaude> getListaPlanoSaude(){
 		return repositorio.getPlano_saude().get();
@@ -242,6 +245,7 @@ public class Atendente extends Funcionario {
 	public void adicionarPlanoDeSaude(PlanoSaude p){
 		repositorio.getPlano_saude().add(p);
 	}
+	
 	
 	
 	
