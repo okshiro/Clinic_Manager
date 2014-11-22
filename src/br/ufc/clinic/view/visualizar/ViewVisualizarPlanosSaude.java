@@ -21,16 +21,6 @@ public class ViewVisualizarPlanosSaude extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public static void main(String[] args) {
-		try {
-			ViewVisualizarPlanosSaude dialog = new ViewVisualizarPlanosSaude(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewVisualizarPlanosSaude(final Atendente atendente) {
 		setBounds(100, 100, 516, 486);
 		getContentPane().setLayout(new BorderLayout());

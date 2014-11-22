@@ -34,19 +34,6 @@ public class viewCadastrarPlanoSaude extends JDialog {
 	private JTextField telefone;
 	private JTextField rua;
 
-	public static void main(String[] args) {
-		try {
-			viewCadastrarPlanoSaude dialog = new viewCadastrarPlanoSaude(new Atendente("saad"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public viewCadastrarPlanoSaude(final Atendente atendente) {
 		setBounds(100, 100, 702, 516);
 		getContentPane().setLayout(new BorderLayout());

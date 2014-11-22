@@ -30,16 +30,6 @@ public class ViewCadastrarConsultaPlano extends JDialog {
 	private JTextField dia;
 	private JTextField hora;
 
-	public static void main(String[] args) {
-		try {
-			ViewCadastrarConsultaPlano dialog = new ViewCadastrarConsultaPlano(new Atendente("dsdsd"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewCadastrarConsultaPlano(final Atendente atendente) {
 		setBounds(100, 100, 823, 488);
 		getContentPane().setLayout(new BorderLayout());

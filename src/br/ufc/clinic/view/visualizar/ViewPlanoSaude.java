@@ -23,16 +23,6 @@ public class ViewPlanoSaude extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public static void main(String[] args) {
-		try {
-			ViewPlanoSaude dialog = new ViewPlanoSaude(new PlanoSaude("sidisjd"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewPlanoSaude(PlanoSaude planoSaude) {
 		setBounds(100, 100, 602, 494);
 		getContentPane().setLayout(new BorderLayout());

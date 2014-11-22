@@ -20,19 +20,7 @@ import br.ufc.clinic.classes.Especialidade;
 public class ViewVisualizarEspecialidade extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	public static void main(String[] args) {
-		try {
-			ViewVisualizarEspecialidade dialog = new ViewVisualizarEspecialidade(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Create the dialog.
-	 */
 	public ViewVisualizarEspecialidade(final Atendente atendente) {
 		setBounds(100, 100, 428, 342);
 		getContentPane().setLayout(new BorderLayout());

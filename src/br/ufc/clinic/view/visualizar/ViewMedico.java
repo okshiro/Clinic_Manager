@@ -26,22 +26,6 @@ public class ViewMedico extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ViewMedico dialog = new ViewMedico(new Medico("sds",232));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewMedico(Medico m) {
 		setBounds(100, 100, 731, 506);
 		getContentPane().setLayout(new BorderLayout());
@@ -66,7 +50,7 @@ public class ViewMedico extends JDialog {
 		}
 		{
 			JLabel lblEnderecos = new JLabel("Enderecos:");
-			lblEnderecos.setBounds(307, 51, 105, 15);
+			lblEnderecos.setBounds(307, 51, 100, 15);
 			contentPanel.add(lblEnderecos);
 		}
 		{

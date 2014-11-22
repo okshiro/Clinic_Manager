@@ -26,17 +26,6 @@ import br.ufc.clinic.classes.TipoObservacao;
 public class ViewCadastrarObservacao extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-
-	
-	public static void main(String[] args) {
-		try {
-			ViewCadastrarObservacao dialog = new ViewCadastrarObservacao(null, null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	
 	public ViewCadastrarObservacao(Medico medico, final Consulta consulta) {
 		setBounds(100, 100, 450, 448);

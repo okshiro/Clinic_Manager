@@ -23,16 +23,6 @@ public class ViewVisualizarHorariosLivres extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public static void main(String[] args) {
-		try {
-			ViewVisualizarHorariosLivres dialog = new ViewVisualizarHorariosLivres(null,null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewVisualizarHorariosLivres(final Atendente atendente, DiaSemana dia) {
 		setBounds(100, 100, 499, 440);
 		getContentPane().setLayout(new BorderLayout());

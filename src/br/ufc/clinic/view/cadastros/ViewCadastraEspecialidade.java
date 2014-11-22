@@ -23,19 +23,6 @@ public class ViewCadastraEspecialidade extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nome;
 
-	public static void main(String[] args) {
-		try {
-			ViewCadastraEspecialidade dialog = new ViewCadastraEspecialidade(new Atendente("sdsd"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewCadastraEspecialidade(final Atendente atendente) {
 		setBounds(100, 100, 404, 228);
 		getContentPane().setLayout(new BorderLayout());

@@ -43,19 +43,6 @@ public class ViewCadastroMedico extends JDialog {
 	private JTextField textUsuario;
 	private JPasswordField textSenha;
 
-	public static void main(String[] args) {
-		try {
-			ViewCadastroMedico dialog = new ViewCadastroMedico(new Atendente("adojad"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewCadastroMedico(final Atendente atendente) {
 		setBounds(100, 100, 662, 618);
 		getContentPane().setLayout(new BorderLayout());

@@ -25,19 +25,6 @@ public class ViewConsultarMedicosEspecialidadeDia extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public static void main(String[] args) {
-		try {
-			ViewConsultarMedicosEspecialidadeDia dialog = new ViewConsultarMedicosEspecialidadeDia(new Atendente("dssds"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewConsultarMedicosEspecialidadeDia(final Atendente atendente) {
 		setBounds(100, 100, 569, 383);
 		getContentPane().setLayout(new BorderLayout());

@@ -27,19 +27,6 @@ public class ViewCadastroGerente extends JDialog {
 	private JTextField textUsuario;
 	private JPasswordField passwordSenha;
 
-	public static void main(String[] args) {
-		try {
-			ViewCadastroGerente dialog = new ViewCadastroGerente(new Atendente("dis"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewCadastroGerente(final Atendente atendente) {
 		setBounds(100, 100, 452, 321);
 		getContentPane().setLayout(new BorderLayout());

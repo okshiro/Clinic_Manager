@@ -26,18 +26,6 @@ public class ViewVisualizarConsultasMedico extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public static void main(String[] args) {
-		try {
-			ViewVisualizarConsultasMedico dialog = new ViewVisualizarConsultasMedico(null, null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewVisualizarConsultasMedico(final Medico medico, final List<Consulta> consultas) {
 		setBounds(100, 100, 450, 433);
 		getContentPane().setLayout(new BorderLayout());

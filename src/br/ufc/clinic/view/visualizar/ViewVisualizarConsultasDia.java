@@ -26,16 +26,6 @@ public class ViewVisualizarConsultasDia extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	public static void main(String[] args) {
-		try {
-			ViewVisualizarConsultasDia dialog = new ViewVisualizarConsultasDia(null, null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewVisualizarConsultasDia(Atendente atendente,LocalDate dia) {
 		setBounds(100, 100, 450, 365);
 		getContentPane().setLayout(new BorderLayout());

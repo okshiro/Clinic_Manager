@@ -30,16 +30,6 @@ public class ViewCadastraConsultaParticular extends JDialog {
 	private JTextField dia;
 	private JTextField hora;
 
-	public static void main(String[] args) {
-		try {
-			ViewCadastraConsultaParticular dialog = new ViewCadastraConsultaParticular(new Atendente("dsdsd"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewCadastraConsultaParticular(final Atendente atendente) {
 		setBounds(100, 100, 635, 469);
 		getContentPane().setLayout(new BorderLayout());

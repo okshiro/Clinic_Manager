@@ -20,16 +20,6 @@ import br.ufc.clinic.classes.Medico;
 public class ViewVisualizarMedico extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-
-	public static void main(String[] args) {
-		try {
-			ViewVisualizarMedico dialog = new ViewVisualizarMedico(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	
 	public ViewVisualizarMedico(Atendente atendente, final java.util.List<Medico> medicos){
 		setBounds(100, 100, 462, 424);

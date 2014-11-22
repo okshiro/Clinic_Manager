@@ -21,18 +21,6 @@ public class ViewPaciente extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ViewPaciente dialog = new ViewPaciente(new Paciente("d"));
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public ViewPaciente(Paciente p) {
 		setBounds(100, 100, 600, 459);
 		getContentPane().setLayout(new BorderLayout());

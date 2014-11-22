@@ -24,19 +24,6 @@ public class ViewOptionEscolherDia extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private DiaSemana dia;
 
-	public static void main(String[] args) {
-		try {
-			ViewOptionEscolherDia dialog = new ViewOptionEscolherDia();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewOptionEscolherDia() {
 		setBounds(100, 100, 414, 372);
 		getContentPane().setLayout(new BorderLayout());

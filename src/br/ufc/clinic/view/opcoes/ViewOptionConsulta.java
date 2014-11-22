@@ -20,19 +20,7 @@ public class ViewOptionConsulta extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private int tipoConsulta;
-	public static void main(String[] args) {
-		try {
-			ViewOptionConsulta dialog = new ViewOptionConsulta();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
+	
 	public ViewOptionConsulta() {
 		this.tipoConsulta = -1;
 		setBounds(100, 100, 438, 247);

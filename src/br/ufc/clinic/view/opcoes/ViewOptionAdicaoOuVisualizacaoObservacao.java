@@ -20,19 +20,6 @@ public class ViewOptionAdicaoOuVisualizacaoObservacao extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private int opcao;
 	
-	
-	public static void main(String[] args) {
-		try {
-			ViewOptionAdicaoOuVisualizacaoObservacao dialog = new ViewOptionAdicaoOuVisualizacaoObservacao();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ViewOptionAdicaoOuVisualizacaoObservacao() {
 		opcao = -1;
 		setBounds(100, 100, 450, 250);
