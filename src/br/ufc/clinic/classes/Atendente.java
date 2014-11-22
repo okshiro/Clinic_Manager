@@ -104,11 +104,8 @@ public class Atendente extends Funcionario {
 	public List<Medico> getMedicoEspecialidade(Especialidade e){
 		List<Medico> medicos = new ArrayList<Medico>();
 		for(Medico m : repositorio.getMedico().get()){
-			for(Especialidade esp : m.getEspecialidades()){
-				System.out.println(esp.toString());
-				if(esp.equals(e)){
-					medicos.add(m);
-				}
+			if(m.getEspecialidades().contains(e)){
+				medicos.add(m);
 			}
 		}
 		System.out.println("Mediso: " + medicos.size());
@@ -117,12 +114,13 @@ public class Atendente extends Funcionario {
 	
 	public List<Medico> getMedicoEspecialidadeDia(Especialidade e, DiaSemana dia){
 		List<Medico> medicosEsp = getMedicoEspecialidade(e);
-		for(int i = 0; i<medicosEsp.size() ; i++){
-			if(!(medicosEsp.get(i).getDiasTrabalha().contains(dia))){
-				medicosEsp.remove(medicosEsp.get(i));
+		List<Medico> medicos = new ArrayList<Medico>();
+		for(Medico m : medicosEsp){
+			if(m.getDiasTrabalha().contains(dia)){
+				medicos.add(m);
 			}
 		}
-		return medicosEsp;
+		return medicos;
 	}
 	
 	
