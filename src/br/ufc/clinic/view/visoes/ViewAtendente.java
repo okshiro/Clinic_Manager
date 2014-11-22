@@ -27,6 +27,7 @@ import br.ufc.clinic.view.opcoes.ViewOptionConsulta;
 import br.ufc.clinic.view.opcoes.ViewOptionConsultarMedico;
 import br.ufc.clinic.view.opcoes.ViewOptionEscolherDia;
 import br.ufc.clinic.view.visualizar.ViewConsultarMedicosEspecialidade;
+import br.ufc.clinic.view.visualizar.ViewConsultarMedicosEspecialidadeDia;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaParticular;
 import br.ufc.clinic.view.visualizar.ViewVisualizarConsultaPorPlano;
 import br.ufc.clinic.view.visualizar.ViewVisualizarEspecialidade;
@@ -270,7 +271,8 @@ public class ViewAtendente extends JDialog {
 						@SuppressWarnings("unused")
 						ViewConsultarMedicosEspecialidade medicosEspecialidade = new ViewConsultarMedicosEspecialidade(atendente);
 					}else if(opcao.getOpcao() == 2){
-						
+						@SuppressWarnings("unused")
+						ViewConsultarMedicosEspecialidadeDia medicosEspecialidade = new ViewConsultarMedicosEspecialidadeDia(atendente);
 					}
 				}
 			}
