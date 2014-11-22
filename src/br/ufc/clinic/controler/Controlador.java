@@ -17,7 +17,6 @@ import br.ufc.clinic.view.visualizar.ViewLogin;
 public class Controlador {
 	RepositoryManage<Object> rep = new RepositoryManage<Object>();	
 	
-	
 	public Controlador(){
 		rep.createRepositoryALL();
 		rep.loadRepositoryALL();
@@ -28,9 +27,7 @@ public class Controlador {
 		
 		
 		ViewLogin login = new ViewLogin();
-		
-		System.out.println("bista");
-		
+	
 		String usuario = login.getUsuario();
 		String senha = login.getSenha();
 		
@@ -49,7 +46,6 @@ public class Controlador {
 			
 			for (Gerente g : rep.getGerentes().get()) {
 				funcionarios.add(g);
-				
 			}
 			
 			for (Funcionario f : funcionarios) {
@@ -63,6 +59,12 @@ public class Controlador {
 		
 		return null;
 		
+	}
+	
+	public void cadastrarAtendente(String nome, String usuario, String senha){
+		Atendente a = new Atendente(nome, new Conta(usuario, senha),0);
+		rep.getAtendentes().add(a);
+		System.out.println("deus");
 	}
 	
 }

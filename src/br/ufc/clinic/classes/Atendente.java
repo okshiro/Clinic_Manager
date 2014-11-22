@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.clinic.repository.RepositoryManage;
-public class Atendente extends Funcionario {
 
+public class Atendente extends Funcionario{
+	
 	private static final long serialVersionUID = 1L;
 	private RepositoryManage<Object> repositorio;
 
@@ -23,6 +24,10 @@ public class Atendente extends Funcionario {
 
 	public Atendente(String nome, Conta conta) {
 		this(nome);
+		setConta(conta);
+	}
+	public Atendente(String nome, Conta conta, int none){
+		super(nome);
 		setConta(conta);
 	}
 	

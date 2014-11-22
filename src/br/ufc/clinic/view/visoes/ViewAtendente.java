@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -61,7 +62,8 @@ public class ViewAtendente extends JDialog {
 		
 		JPanel panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
-			ImageIcon bg = new ImageIcon(getClass().getResource("/resources/background.jpg"));
+			File imagem = new File("resources/background.jpg");
+			ImageIcon bg = new ImageIcon(imagem.getAbsolutePath());
 			protected void paintComponent(Graphics g) {
 				g.drawImage(bg.getImage(), 0, 0, getWidth(), getHeight(), this);
 			}
