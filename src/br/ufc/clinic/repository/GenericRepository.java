@@ -20,6 +20,7 @@ public class GenericRepository<T> {
 	private boolean load;  
 
 	public GenericRepository(String nome){
+		new File("repository").mkdir();
 		File arquivo = new File("repository/"+ nome + ".bin");
 		this.pathFile = arquivo.getAbsolutePath();
 		this.entity = new ArrayList<T>();
